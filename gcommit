@@ -1,0 +1,86 @@
+#!/usr/bin/python3
+import sys, tempfile, os
+from subprocess import call
+
+def formatDeveloper(line):
+    '''
+    A team member must be written as
+    ID="Member Name <member.email@example.com>"
+    '''
+    return line.replace("\n","").split("=")
+
+
+def readTeam():
+    try:
+        team = {}
+        curr_dir = os.environ.get('PWD')
+        team_file = "{}/.gitteam".format(curr_dir)
+        with open(team_file) as f:
+            for dev in [formatDeveloper(d) for d in f.readlines()]:
+                team[dev[0]] = dev[1]
+        f.closed
+        return team
+    except FileNotFoundError:
+        raise FileNotFoundError
+
+
+def filterTeam(team):
+    selected = sys.argv[1:]
+    filtered = {}
+
+    error = None
+    for mem in selected:
+        if mem in team:
+            filtered[mem] = team[mem]
+        else:
+            error = "Identifier '{id}' not found".format(id=mem)
+
+    msg = "Identifiers must match those in .gitteam file"
+    if not error == None:
+        raise ValueError("{} - {}".format(msg, error))
+    if not len(filtered) > 0:
+        raise ValueError(msg)
+    return filtered
+
+
+
+def commit():
+    call(["git", "commit", "-s"])
+
+
+def groupCommit(team):
+    initial_message = b"\n"
+
+    for d in team:
+        line = "\nSigned-off-by: {}".format(team[d])
+        initial_message += line.encode()
+
+    editor = os.environ.get('GIT_EDITOR','nvim')
+
+    with tempfile.NamedTemporaryFile(suffix=".tmp") as tf:
+        tf.write(initial_message)
+        tf.flush()
+        call([editor, tf.name])
+        tf.seek(0)
+        edited_message = tf.read()
+        call(["git", "commit", "-m", edited_message])
+
+
+def main():
+    '''
+    Tries to create a multi-dev commit signature
+    If there's no .gitteam file, then a regular commit is done
+    If there's an argument-format error, then a ValueError is risen
+    '''
+    try:
+        team = readTeam()
+        group = filterTeam(team)
+        groupCommit(group)
+    except ValueError as ve:
+        print(ve)
+    except FileNotFoundError:
+        commit()
+
+
+if __name__ == "__main__":
+    main()
