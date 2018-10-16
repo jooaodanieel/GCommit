@@ -3,7 +3,7 @@
 All contributions are welcome!
 
 If you'd like to submit a change, please create a Pull-Request. There are some
-issues in the repository you can base you're contribution on.
+[issues][1] in the repository you can base you're contribution on.
 
 ## Disclaimer
 
@@ -21,3 +21,8 @@ to be installed -- sometimes it's worthy.
 4. Come back to this repo
 5. Create the PR!
 
+
+
+
+
+[1]: https://github.com/jooaodanieel/GCommit/issues
