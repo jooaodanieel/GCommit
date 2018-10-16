@@ -35,3 +35,14 @@ Signed-off-by: Jane Doe <jane.doe@example.com>
 Signed-off-by: João Daniel <jotaf.daniel@gmail.com>
 ```
 
+
+## Contributing
+
+Please refer to [CONTRIBUTING.md][1]
+
+
+
+
+
+
+[1]: https://github.com/jooaodanieel/GCommit/blob/master/CONTRIBUTING.md
