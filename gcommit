@@ -21,7 +21,8 @@ def read_team():
         curr_dir = os.environ.get('PWD')
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
-            for dev in [format_developer(d) for d in f.readlines()]:
+            for line in f.readlines():
+                dev = format_developer(line)
                 team[dev[0]] = dev[1]
         f.closed
         return team
@@ -63,12 +64,13 @@ def group_commit(team):
         editor = check_output(['git', 'config', 'core.editor'])
         editor = editor.decode().strip()
     except CalledProcessError:
-        editor = os.environ.get('GIT_EDITOR', 'nvim')
+        editor = os.environ.get('GIT_EDITOR', 'nano')
 
     with tempfile.NamedTemporaryFile(suffix=".tmp") as tf:
         tf.write(initial_message)
         tf.flush()
         try:
+            print(editor, tf.name)
             call([editor, tf.name])
         except OSError:
             print('Error: Editor {} not found'.format(editor))
