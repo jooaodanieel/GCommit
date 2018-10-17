@@ -6,6 +6,23 @@ more than one person -- pair and mob programming reality.
 Instead of having to set manually the other developers names, you can define
 once and reference at any commit-time.
 
+## Installation
+For instalattion you have to run the next command:
+
+```
+$ sudo make install
+
+GCommit has been installed successfully
+```
+
+## Uninstall
+For Uninstallation you have to run the next command:
+
+```
+$ sudo make uninstall
+```
+
+
 ## How to use
 
 GCommit reads a file that defines your teammates signatures, so first create
