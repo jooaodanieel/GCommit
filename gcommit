@@ -25,8 +25,8 @@ def read_team():
                 team[dev[0]] = dev[1]
         f.closed
         return team
-    except FileNotFoundError:
-        raise FileNotFoundError
+    except IOError:
+        raise IOError('Could not find .gitteam file')
 
 
 def filter_team(team):
@@ -70,7 +70,7 @@ def group_commit(team):
         tf.flush()
         try:
             call([editor, tf.name])
-        except FileNotFoundError:
+        except OSError:
             print('Error: Editor {} not found'.format(editor))
             print("Configure the editor by setting the 'GIT_EDITOR' env variable")
             print("Or by setting 'git config --global core.editor {editor}'")
@@ -84,7 +84,7 @@ def main():
     """
     Tries to create a multi-dev commit signature
     If there's no .gitteam file, then a regular commit is done
-    If there's an argument-format error, then a ValueError is risen
+    If there's an argument-format error, then a ValueError is raised
     """
     try:
         team = read_team()
@@ -92,7 +92,7 @@ def main():
         group_commit(group)
     except ValueError as ve:
         print(ve)
-    except FileNotFoundError:
+    except OSError:
         commit()
 
 
