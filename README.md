@@ -71,11 +71,12 @@ Many thanks to all contributors!
 
 ## License
 
-This project is licensed under the [MIT License] (https://opensource.org/licenses/MIT)
+This project is licensed under the [MIT License][2]
 
 
 
 [1]: https://github.com/jooaodanieel/GCommit/blob/master/CONTRIBUTING.md
+[2]: https://opensource.org/licenses/MIT
 [mairieli]: https://github.com/mairieli
 [eamanu]: https://github.com/eamanu
 [gpalsingh]: https://github.com/gpalsingh
