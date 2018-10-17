@@ -22,8 +22,8 @@ def check_format(str_array):
 def read_team():
     try:
         team = {}
-        curr_dir = os.environ.get('PWD')
-        team_file = "{}/.gitteam".format(curr_dir)
+        curr_dir = os.getcwd()
+        team_file = os.path.join(curr_dir, ".gitteam")
         with open(team_file) as f:
             i = 1
             for line in f.readlines():
