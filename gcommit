@@ -15,14 +15,24 @@ def format_developer(line):
     return line.replace("\n", "").split("=")
 
 
+def check_format(str_array):
+    return True if len(str_array) == 2 else False
+
+
 def read_team():
     try:
         team = {}
         curr_dir = os.environ.get('PWD')
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
-            for dev in [format_developer(d) for d in f.readlines()]:
-                team[dev[0]] = dev[1]
+            i = 1
+            for line in f.readlines():
+                dev = format_developer(line)
+                if check_format(dev):
+                    team[dev[0]] = dev[1]
+                else:
+                    raise SyntaxError("Format error .gitteam:{}".format(i))
+                i += 1
         f.closed
         return team
     except IOError:
@@ -63,12 +73,13 @@ def group_commit(team):
         editor = check_output(['git', 'config', 'core.editor'])
         editor = editor.decode().strip()
     except CalledProcessError:
-        editor = os.environ.get('GIT_EDITOR', 'nvim')
+        editor = os.environ.get('GIT_EDITOR', 'nano')
 
     with tempfile.NamedTemporaryFile(suffix=".tmp") as tf:
         tf.write(initial_message)
         tf.flush()
         try:
+            print(editor, tf.name)
             call([editor, tf.name])
         except OSError:
             print('Error: Editor {} not found'.format(editor))
@@ -94,6 +105,8 @@ def main():
         print(ve)
     except OSError:
         commit()
+    except SyntaxError as se:
+        print(se)
 
 
 if __name__ == "__main__":
