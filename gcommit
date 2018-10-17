@@ -15,15 +15,26 @@ def format_developer(line):
     return line.replace("\n", "").split("=")
 
 
+def check_format(str_array):
+    if len(str_array) != 2:
+        return False
+
+    return True
+
 def read_team():
     try:
         team = {}
         curr_dir = os.environ.get('PWD')
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
+            i = 1
             for line in f.readlines():
                 dev = format_developer(line)
-                team[dev[0]] = dev[1]
+                if check_format(dev):
+                    team[dev[0]] = dev[1]
+                else:
+                    raise SyntaxError("Format error in line {}".format(i))
+                i += 1
         f.closed
         return team
     except IOError:
@@ -96,6 +107,8 @@ def main():
         print(ve)
     except OSError:
         commit()
+    except SyntaxError as se:
+        print(se)
 
 
 if __name__ == "__main__":
