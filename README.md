@@ -66,8 +66,12 @@ Many thanks to all contributors!
 * [@eamanu][eamanu]
 * [@gpalsingh][gpalsingh]
 * [@ehx][ehx]
+* [@thatiane][thatiane]
 
 
+## License
+
+This project is licensed under the [MIT License] (https://opensource.org/licenses/MIT)
 
 
 
@@ -76,8 +80,4 @@ Many thanks to all contributors!
 [eamanu]: https://github.com/eamanu
 [gpalsingh]: https://github.com/gpalsingh
 [ehx]: https://github.com/ehx
-
-
-## License
-
-This project is licensed under the [MIT License] (https://opensource.org/licenses/MIT)
+[thatiane]: https://github.com/thatiane
