@@ -67,6 +67,8 @@ Many thanks to all contributors!
 * [@gpalsingh][gpalsingh]
 * [@ehx][ehx]
 * [@thatiane][thatiane]
+* [@hegde5][hegde5]
+* [@Detril][Detril]
 
 
 ## License
@@ -82,3 +84,5 @@ This project is licensed under the [MIT License][2]
 [gpalsingh]: https://github.com/gpalsingh
 [ehx]: https://github.com/ehx
 [thatiane]: https://github.com/thatiane
+[hegde5]: https://github.com/hegde5
+[Detril]: https://github.com/Detril
