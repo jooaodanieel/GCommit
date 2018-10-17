@@ -14,8 +14,8 @@ install:
 
 uninstall:
 	@test -d $(BIN_DIR) && \
-	@cd $(BIN_DIR) && \
-	@rm -f git-$(LOADER)
+		cd $(BIN_DIR) && \
+		rm -f git-$(LOADER)
 
 
 
