@@ -88,7 +88,7 @@ def group_commit(team):
             sys.exit()
         tf.seek(0)
         edited_message = tf.read()
-        call(["git", "commit", "-m", edited_message])
+        call(["git", "commit", "-m", edited_message.decode('utf-8')])
 
 
 def main():
