@@ -5,6 +5,8 @@ All contributions are welcome!
 If you'd like to submit a change, please create a Pull-Request. There are some
 [issues][1] in the repository you can base you're contribution on.
 
+Don't forget to add yourself as a contributor to the project README section!
+
 ## Disclaimer
 
 As a project decision, I chose Python as programming language because is almost

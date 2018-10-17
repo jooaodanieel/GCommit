@@ -41,8 +41,21 @@ Signed-off-by: João Daniel <jotaf.daniel@gmail.com>
 Please refer to [CONTRIBUTING.md][1]
 
 
+## Contributors
+
+Many thanks to all contributors!
+
+* [@mairieli][mairieli]
+* [@eamanu][eamanu]
+* [@gpalsingh][gpalsingh]
+* [@ehx][ehx]
+
 
 
 
 
 [1]: https://github.com/jooaodanieel/GCommit/blob/master/CONTRIBUTING.md
+[mairieli]: https://github.com/mairieli
+[eamanu]: https://github.com/eamanu
+[gpalsingh]: https://github.com/gpalsingh
+[ehx]: https://github.com/ehx
