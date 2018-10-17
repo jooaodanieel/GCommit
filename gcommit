@@ -1,22 +1,27 @@
 #!/usr/bin/env python
-import sys, tempfile, os
-from subprocess import call, check_output, CalledProcessError
+import os
+import sys
+import tempfile
+from subprocess import call
+from subprocess import check_output
+from subprocess import CalledProcessError
 
-def formatDeveloper(line):
-    '''
+
+def format_developer(line):
+    """
     A team member must be written as
     ID="Member Name <member.email@example.com>"
-    '''
-    return line.replace("\n","").split("=")
+    """
+    return line.replace("\n", "").split("=")
 
 
-def readTeam():
+def read_team():
     try:
         team = {}
         curr_dir = os.environ.get('PWD')
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
-            for dev in [formatDeveloper(d) for d in f.readlines()]:
+            for dev in [format_developer(d) for d in f.readlines()]:
                 team[dev[0]] = dev[1]
         f.closed
         return team
@@ -24,7 +29,7 @@ def readTeam():
         raise FileNotFoundError
 
 
-def filterTeam(team):
+def filter_team(team):
     selected = sys.argv[1:]
     filtered = {}
 
@@ -36,19 +41,18 @@ def filterTeam(team):
             error = "Identifier '{id}' not found".format(id=mem)
 
     msg = "Identifiers must match those in .gitteam file"
-    if not error == None:
+    if error:
         raise ValueError("{} - {}".format(msg, error))
     if not len(filtered) > 0:
         raise ValueError(msg)
     return filtered
 
 
-
 def commit():
     call(["git", "commit", "-s"])
 
 
-def groupCommit(team):
+def group_commit(team):
     initial_message = b"\n"
 
     for d in team:
@@ -77,15 +81,15 @@ def groupCommit(team):
 
 
 def main():
-    '''
+    """
     Tries to create a multi-dev commit signature
     If there's no .gitteam file, then a regular commit is done
     If there's an argument-format error, then a ValueError is risen
-    '''
+    """
     try:
-        team = readTeam()
-        group = filterTeam(team)
-        groupCommit(group)
+        team = read_team()
+        group = filter_team(team)
+        group_commit(group)
     except ValueError as ve:
         print(ve)
     except FileNotFoundError:
