@@ -21,12 +21,13 @@ def read_team():
         curr_dir = os.environ.get('PWD')
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
-            for dev in [format_developer(d) for d in f.readlines()]:
+            for line in f.readlines():
+                dev = format_developer(line)
                 team[dev[0]] = dev[1]
         f.closed
         return team
-    except FileNotFoundError:
-        raise FileNotFoundError
+    except RuntimeWarning:
+        raise RuntimeWarning
 
 
 def filter_team(team):
@@ -63,14 +64,15 @@ def group_commit(team):
         editor = check_output(['git', 'config', 'core.editor'])
         editor = editor.decode().strip()
     except CalledProcessError:
-        editor = os.environ.get('GIT_EDITOR', 'nvim')
+        editor = os.environ.get('GIT_EDITOR', 'nano')
 
     with tempfile.NamedTemporaryFile(suffix=".tmp") as tf:
         tf.write(initial_message)
         tf.flush()
         try:
+            print(editor, tf.name)
             call([editor, tf.name])
-        except FileNotFoundError:
+        except RuntimeWarning:
             print('Error: Editor {} not found'.format(editor))
             print("Configure the editor by setting the 'GIT_EDITOR' env variable")
             print("Or by setting 'git config --global core.editor {editor}'")
@@ -92,7 +94,7 @@ def main():
         group_commit(group)
     except ValueError as ve:
         print(ve)
-    except FileNotFoundError:
+    except RuntimeWarning:
         commit()
 
 
