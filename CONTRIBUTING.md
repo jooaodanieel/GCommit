@@ -12,7 +12,7 @@ Don't forget to add yourself as a contributor to the project README section!
 As a project decision, I chose Python as programming language because is almost
 sure to be already installed. With this in mind, try to use native Python
 resources, so that there's no need to install anything else.
-Yet, you're free to purporse any change, even if it depends on other packages
+Yet, you're free to propose any change, even if it depends on other packages
 to be installed -- sometimes it's worthy.
 
 ## Creating a PR

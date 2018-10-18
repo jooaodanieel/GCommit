@@ -7,7 +7,7 @@ Instead of having to set manually the other developers names, you can define
 once and reference at any commit-time.
 
 ## Installation
-For instalattion you have to run the next command:
+For installation you have to run the next command:
 
 ```
 $ sudo make install
@@ -64,6 +64,7 @@ Many thanks to all contributors!
 
 
 
+
 |          Name  \| Photo           |                                                              |
 | :-------------------------------: | ------------------------------------------------------------ |
 |  [ Mairieli ][ mairieli ] Wessel  | <img src="https://avatars3.githubusercontent.com/u/5549736?s=400&v=4" alt = "Mairielli" width = "200"/> |
@@ -74,6 +75,7 @@ Many thanks to all contributors!
 |       [Vinay][hegde5] Hegde       | <img src = "https://avatars3.githubusercontent.com/u/8609211?s=400&v=4" alt = "Vinay Hedge" width = "200"/> |
 | [Andre][Detril] Ferrari Moukarzel | <img src = "https://avatars3.githubusercontent.com/u/17693231?s=400&v=4" alt ="Andre Ferrari Moukarzel" witdh = "200"/> |
 |       [Caio][CaioA] Andrade       | <img src = "https://avatars3.githubusercontent.com/u/27254325?s=460&v=4" alt = "Caio Andrade" width = "200"/> |
+|    [ Pedro ][pedro823] Pereira    | <img src = "https://avatars2.githubusercontent.com/u/7110169?s=460&v=4" alt = "Pedro Pereira"/> |
 
 ## License
 
@@ -93,4 +95,5 @@ This project is licensed under the [MIT License][2]
 [hegde5]: https://github.com/hegde5
 [Detril]: https://github.com/Detril
 [CaioA]: https://github.com/CanTulio
+[pedro823]: https://github.com/pedro823
 
