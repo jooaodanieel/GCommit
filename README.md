@@ -69,6 +69,7 @@ Many thanks to all contributors!
 * [@thatiane][thatiane]
 * [@hegde5][hegde5]
 * [@Detril][Detril]
+* [@officialputuid][officialputuid]
 
 
 ## License
@@ -86,3 +87,4 @@ This project is licensed under the [MIT License][2]
 [thatiane]: https://github.com/thatiane
 [hegde5]: https://github.com/hegde5
 [Detril]: https://github.com/Detril
+[officialputuid]: https://github.com/officialputuid
