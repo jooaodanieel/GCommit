@@ -1,11 +1,9 @@
 #!/usr/bin/env python
+from __future__ import print_function
 import os
 import sys
 import tempfile
-from subprocess import call
-from subprocess import check_output
-from subprocess import CalledProcessError
-
+from subprocess import call, check_output, CalledProcessError
 
 def format_developer(line):
     """
@@ -16,25 +14,25 @@ def format_developer(line):
 
 
 def check_format(str_array):
-    return True if len(str_array) == 2 else False
+    return len(str_array) == 2
 
 
 def read_team():
     try:
         team = {}
-        curr_dir = os.environ.get('PWD')
+        curr_dir = os.getcwd()
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
-            i = 1
-            for line in f.readlines():
+            for i, line in enumerate(f):
                 dev = format_developer(line)
+
                 if check_format(dev):
                     team[dev[0]] = dev[1]
                 else:
-                    raise SyntaxError("Format error .gitteam:{}".format(i))
-                i += 1
-        f.closed
+                    raise SyntaxError("Format error .gitteam:{}".format(i + 1))
+
         return team
+
     except IOError:
         raise IOError('Could not find .gitteam file')
 
@@ -49,11 +47,12 @@ def filter_team(team):
             filtered[mem] = team[mem]
         else:
             error = "Identifier '{id}' not found".format(id=mem)
+            break
 
     msg = "Identifiers must match those in .gitteam file"
     if error:
         raise ValueError("{} - {}".format(msg, error))
-    if not len(filtered) > 0:
+    if len(filtered) == 0:
         raise ValueError(msg)
     return filtered
 
