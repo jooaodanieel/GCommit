@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import argparse
 import os
 import sys
 import tempfile
@@ -39,12 +40,11 @@ def read_team():
         raise IOError('Could not find .gitteam file')
 
 
-def filter_team(team):
-    selected = sys.argv[1:]
+def filter_team(team, initials):
     filtered = {}
 
     error = None
-    for mem in selected:
+    for mem in initials:
         if mem in team:
             filtered[mem] = team[mem]
         else:
@@ -97,9 +97,20 @@ def main():
     If there's no .gitteam file, then a regular commit is done
     If there's an argument-format error, then a ValueError is raised
     """
+
+    # Define expected command line arguments, and parse arguments given
+    parser = argparse.ArgumentParser(
+        description='GCommit is a git-plugin that allows commits to be signed \
+                    by more than one person -- pair and mob programming \
+                    reality.')
+    parser.add_argument(
+        'initials', metavar='[INITIALS]', type=str, nargs='+',
+        help='The intials of each developer defined in .gitteam')
+    args = parser.parse_args()
+
     try:
         team = read_team()
-        group = filter_team(team)
+        group = filter_team(team, args.initials)
         group_commit(group)
     except ValueError as ve:
         print(ve)
