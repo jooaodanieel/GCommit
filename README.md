@@ -62,16 +62,22 @@ Please refer to [CONTRIBUTING.md][1]
 
 Many thanks to all contributors!
 
-* [@mairieli][mairieli]
-* [@eamanu][eamanu]
-* [@gpalsingh][gpalsingh]
-* [@ehx][ehx]
-* [@thatiane][thatiane]
-* [@hegde5][hegde5]
-* [@Detril][Detril]
 
+
+|          Name  \| Photo           |                                                              |
+| :-------------------------------: | ------------------------------------------------------------ |
+|  [ Mairieli ][ mairieli ] Wessel  | <img src="https://avatars3.githubusercontent.com/u/5549736?s=400&v=4" alt = "Mairielli" width = "200"/> |
+|    [ Emmanuel ][ eamanu ]Arias    | <img src = "https://avatars2.githubusercontent.com/u/7605307?s=400&v=4" alt = "Emmanuel Arias"/> |
+|  [ Gurkirpal ][gpalsingh] Singh   | <img src ="https://avatars2.githubusercontent.com/u/12171804?s=400&v=4" alt = "Gurkirpal Singh" width = "200"/> |
+|           [ Eloy ][ehx]           | <img src ="https://avatars2.githubusercontent.com/u/3865119?s=400&v=4" alt = "Eloy" width = "200"/> |
+|    [ Thathiane ][thatiane]Rosa    | <img src = "https://avatars0.githubusercontent.com/u/3801092?s=400&v=4" alt = "Thathiane" width = "200"/> |
+|       [Vinay][hegde5] Hegde       | <img src = "https://avatars3.githubusercontent.com/u/8609211?s=400&v=4" alt = "Vinay Hedge" width = "200"/> |
+| [Andre][Detril] Ferrari Moukarzel | <img src = "https://avatars3.githubusercontent.com/u/17693231?s=400&v=4" alt ="Andre Ferrari Moukarzel" witdh = "200"/> |
+|       [Caio][CaioA] Andrade       | <img src = "https://avatars3.githubusercontent.com/u/27254325?s=460&v=4" alt = "Caio Andrade" width = "200"/> |
 
 ## License
+
+
 
 This project is licensed under the [MIT License][2]
 
@@ -86,3 +92,5 @@ This project is licensed under the [MIT License][2]
 [thatiane]: https://github.com/thatiane
 [hegde5]: https://github.com/hegde5
 [Detril]: https://github.com/Detril
+[CaioA]: https://github.com/CanTulio
+
