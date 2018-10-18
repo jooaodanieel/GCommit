@@ -62,13 +62,15 @@ Please refer to [CONTRIBUTING.md][1]
 
 Many thanks to all contributors!
 
-* [@mairieli][mairieli]
-* [@eamanu][eamanu]
-* [@gpalsingh][gpalsingh]
-* [@ehx][ehx]
-* [@thatiane][thatiane]
-* [@hegde5][hegde5]
-* [@Detril][Detril]
+Name | Photo
+---: | ---
+[Mairieli Wessel][mairieli] | ![Mairieli Wessel](https://avatars3.githubusercontent.com/u/5549736?s=120&v=4)
+[Emmanuel Arias][eamanu] | ![Emmanuel Arias](https://avatars2.githubusercontent.com/u/7605307?s=120&v=4)
+[Gurkirpal Singh][gpalsingh] | <img alt="" width="120" height="120" class="avatar width-full rounded-2" src="https://avatars3.githubusercontent.com/u/12171804?s=120&amp;v=4">
+[Eloy][ehx] | ![Eloy](https://avatars2.githubusercontent.com/u/3865119?s=120&v=4)
+[Thatiane de Oliveira Rosa][thatiane] | ![Thatiane de Oliveira Rosa](https://avatars0.githubusercontent.com/u/3801092?s=120&v=4)
+[Vinay Hegde][hegde5] | ![Vinay Hegde](https://avatars3.githubusercontent.com/u/8609211?s=120&v=4)
+[Andre Ferrari Moukarzel][Detril] | ![Andre Ferrari Moukarzel](https://avatars3.githubusercontent.com/u/17693231?s=120&v=4)
 
 
 ## License
