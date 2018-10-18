@@ -7,6 +7,14 @@ Instead of having to set manually the other developers names, you can define
 once and reference at any commit-time.
 
 ## Installation
+
+**Note:** While installing make sure that the directory where the plugin script
+is installed is in your `PATH`.
+
+### Unix-like systems
+
+#### Using make
+
 For instalattion you have to run the next command:
 
 ```
@@ -15,12 +23,41 @@ $ sudo make install
 GCommit has been installed successfully
 ```
 
-## Uninstall
-For Uninstallation you have to run the next command:
+#### Using setup.py
+
+First you might need to get distutils:
+
+```
+$ sudo apt-get install python3-distutils
+```
+
+Then use the following command:
+
+```
+$ sudo python setup.py install
+```
+
+This will automatically take care of changing permissions on the script.
+
+### Windows
+
+The only method currently available is using `setup.py`:
+```
+$ python setup.py install
+```
+
+## Uninstallation
+
+If you used `make`, use the following command:
 
 ```
 $ sudo make uninstall
 ```
+
+If you're on windows or used `setup.py` you'll have to manually remove
+the file from the install directory. For example, The default on linux is
+`/usr/local/bin` while on windows (using python 3.7) it is
+`~\{user}\AppData\Local\Programs\Python37\Scripts`
 
 
 ## How to use
