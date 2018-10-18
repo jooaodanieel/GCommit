@@ -74,6 +74,7 @@ Many thanks to all contributors!
 |[Andre][Detril] Moukarzel   |<img src="https://avatars3.githubusercontent.com/u/17693231?s=400&v=4" width="200" alt="Andre Moukarzel"/> |
 |[Caio][CaioA] Andrade       |<img src="https://avatars3.githubusercontent.com/u/27254325?s=460&v=4" width="200" alt="Caio Andrade"/> |
 |[Pedro][pedro823] Pereira   |<img src="https://avatars2.githubusercontent.com/u/7110169?s=460&v=4"  width="200" alt="Pedro Pereira"/> |
+|[Jay][JayWelborn] Welborn   |<img src="https://avatars1.githubusercontent.com/u/20888363?s=460&v=4" width="200" alt="Jay Welborn"/> |
 
 
 
@@ -100,4 +101,5 @@ This project is licensed under the [MIT License][2]
 [Detril]: https://github.com/Detril
 [CaioA]: https://github.com/CanTulio
 [pedro823]: https://github.com/pedro823
+[JayWelborn]:https://github.com/JayWelborn
 
