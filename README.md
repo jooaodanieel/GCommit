@@ -7,7 +7,7 @@ Instead of having to set manually the other developers names, you can define
 once and reference at any commit-time.
 
 ## Installation
-For instalattion you have to run the next command:
+For installation you have to run the next command:
 
 ```
 $ sudo make install
@@ -69,6 +69,7 @@ Many thanks to all contributors!
 * [@thatiane][thatiane]
 * [@hegde5][hegde5]
 * [@Detril][Detril]
+* [@pedro823][pedro823]
 
 
 ## License
