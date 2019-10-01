@@ -111,7 +111,7 @@ def main():
                                             It overrides --initials flag')
     args = parser.parse_args()
 
-    if len(parser._get_args()) == 0:
+    if args.all == False and args.initials == None:
         print('One of the arguments must be specified. See usage with git gcommit --h')
         sys.exit()
 
