@@ -104,10 +104,10 @@ def main():
                     by more than one person -- pair and mob programming \
                     reality.')
     parser.add_argument(
-        '--initials', metavar='[INITIALS]', type=str, nargs='+',
+        '--initials', '-i', metavar='[INITIALS]', type=str, nargs='+',
         help='The intials of each developer defined in .gitteam')
     parser.add_argument(
-        '--all', action='store_true', help='Add every developer defined at .gitteam to the commit. \
+        '--all', '-a', action='store_true', help='Add every developer defined at .gitteam to the commit. \
                                             It overrides --initials flag')
     args = parser.parse_args()
 
