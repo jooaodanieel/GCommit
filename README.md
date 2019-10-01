@@ -1,4 +1,4 @@
-![GCommit](https://raw.githubusercontent.com/jooaodanieel/GCommit/GCommitLogo.png)
+![GCommit](GCommitLogo.png)
 
 
 # GCommit - Group Commit
