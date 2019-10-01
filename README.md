@@ -1,3 +1,6 @@
+![GCommit](https://raw.githubusercontent.com/jooaodanieel/GCommit/GCommitLogo.png)
+
+
 # GCommit - Group Commit
 
 GCommit is a git-plugin that eases how to commit when you need to sign for
