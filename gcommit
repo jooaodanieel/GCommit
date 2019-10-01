@@ -17,7 +17,6 @@ def format_developer(line):
 def check_format(str_array):
     return len(str_array) == 2
 
-
 def read_team():
     try:
         team = {}
@@ -37,6 +36,16 @@ def read_team():
     except IOError:
         raise IOError('Could not find .gitteam file')
 
+def add_member(member):
+    try:
+        n_line = '{}="{} <{}>"\n'.format(member[2], member[0], member[1])
+        curr_dir = os.getcwd()
+        team_file = "{}/.gitteam".format(curr_dir)
+        with open(team_file, 'a') as f:
+            f.write(n_line)
+
+    except IOError:
+        raise IOError('Could not find .gitteam file')
 
 def filter_team(team, initials):
     filtered = {}
@@ -103,21 +112,27 @@ def main():
                     by more than one person -- pair and mob programming \
                     reality.')
     parser.add_argument(
-        'initials', metavar='[INITIALS]', type=str, nargs='+',
+        'initials', metavar='[INITIALS]', type=str, nargs='?',
         help='The intials of each developer defined in .gitteam')
+    parser.add_argument(
+        '--add', metavar=('NOME', 'EMAIL', 'ID'), type=str, nargs=3,
+        action="store", dest="n_member",
+        help='Add new member to .gitteam')
     args = parser.parse_args()
 
     try:
-        team = read_team()
-        group = filter_team(team, args.initials)
-        group_commit(group)
+        if args.n_member:
+            add_member(args.n_member)
+        if args.initials:
+            team = read_team()
+            group = filter_team(team, args.initials)
+            group_commit(group)
     except ValueError as ve:
         print(ve)
     except OSError:
         commit()
     except SyntaxError as se:
         print(se)
-
 
 if __name__ == "__main__":
     main()
