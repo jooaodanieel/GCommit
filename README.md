@@ -55,6 +55,11 @@ Signed-off-by: Jane Doe <jane.doe@example.com>
 Signed-off-by: João Daniel <jotaf.daniel@gmail.com>
 ```
 
+You can also include the whole team bar a select few members by entering the following:
+
+```bash
+git gcommit JAD JD --except
+```
 
 ## Contributing
 
@@ -78,6 +83,7 @@ Many thanks to all contributors!
 |[Caio][CaioA] Andrade       |<img src="https://avatars3.githubusercontent.com/u/27254325?s=200&v=4" alt="Caio Andrade"/> |
 |[Pedro][pedro823] Pereira   |<img src="https://avatars2.githubusercontent.com/u/7110169?s=200&v=4"  alt="Pedro Pereira"/> |
 |[Jay][JayWelborn] Welborn   |<img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Jay Welborn"/> |
+|[Darryl][darrylpargeter] Darryl |<img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Darryl Pargeter"/> |
 
 
 
