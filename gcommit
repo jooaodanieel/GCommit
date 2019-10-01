@@ -132,8 +132,7 @@ def main():
     try:
         team = read_team()
         group = args.filter(team, args.initials)
-        print(group)
-        #group_commit(group)
+        group_commit(group)
     except ValueError as ve:
         print(ve)
     except OSError:
