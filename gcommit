@@ -38,7 +38,7 @@ def read_team():
         raise IOError('Could not find .gitteam file')
 
 
-def filter_team(team, initials):
+def filter_by_initials(team, initials):
     filtered = {}
 
     error = None
@@ -49,12 +49,29 @@ def filter_team(team, initials):
             error = "Identifier '{id}' not found".format(id=mem)
             break
 
+    validate_team(filtered, error)
+    return filtered
+
+def exculed_by_initials(team, initials):
+    error = None
+
+    for mem in initials:
+        if mem in team:
+            del team[mem]
+        else:
+            error = "Identifier '{id}' not found".format(id=mem)
+            break
+
+    validate_team(team, error)
+    return team
+
+def validate_team(team, error):
     msg = "Identifiers must match those in .gitteam file"
     if error:
         raise ValueError("{} - {}".format(msg, error))
-    if len(filtered) == 0:
+    if len(team) == 0:
         raise ValueError(msg)
-    return filtered
+
 
 
 def commit():
@@ -89,7 +106,6 @@ def group_commit(team):
         edited_message = tf.read()
         call(["git", "commit", "-m", edited_message])
 
-
 def main():
     """
     Tries to create a multi-dev commit signature
@@ -105,12 +121,19 @@ def main():
     parser.add_argument(
         'initials', metavar='[INITIALS]', type=str, nargs='+',
         help='The intials of each developer defined in .gitteam')
+    parser.add_argument('-e', '--except', metavar='[INITIALS]', 
+            dest='filter', action='store_const', const=exculed_by_initials,
+            default=filter_by_initials,
+            help='add the whole team bar those that have been listed'
+            )
+
     args = parser.parse_args()
 
     try:
         team = read_team()
-        group = filter_team(team, args.initials)
-        group_commit(group)
+        group = args.filter(team, args.initials)
+        print(group)
+        #group_commit(group)
     except ValueError as ve:
         print(ve)
     except OSError:
