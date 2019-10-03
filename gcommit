@@ -90,7 +90,7 @@ def group_commit(team):
 
     for d in team:
         line = "\nSigned-off-by: {}".format(team[d])
-        initial_message += line.encode('ascii', 'ignore')
+        initial_message += line.encode()
 
     try:
         editor = check_output(['git', 'config', 'core.editor'])
