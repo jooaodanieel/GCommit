@@ -8,31 +8,55 @@ from subprocess import call, check_output, CalledProcessError
 
 def format_developer(line):
     """
-    A team member must be written as
+    Team members must be written as
     ID="Member Name <member.email@example.com>"
+    ID2="Member Name 2 <member2.email@example.com>"
+    ID3="Member Name 3 <member3.email@example.com>"
     """
-    return line.replace("\n", "").split("=")
+    return line.replace("\n", "").strip().split("=")
 
+
+def format_group(line):
+    '''
+    A Group of Members must be written as
+    GROUP1: ID ID2
+    GROUP2: ID ID3
+    '''
+    group_key, group_value = line.replace("\n", "").strip().split(":")
+    group_key = group_key.strip()
+    group_value = group_value.strip().split(" ")
+    return (group_key, group_value)
 
 def check_format(str_array):
     return len(str_array) == 2
 
 
-def read_team():
+def read_config_file():
     try:
         team = {}
+        groups = {}
         curr_dir = os.getcwd()
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
             for i, line in enumerate(f):
-                dev = format_developer(line)
+                # Seek for Members
+                if '=' in line:
+                    dev = format_developer(line)
 
-                if check_format(dev):
-                    team[dev[0]] = dev[1]
-                else:
-                    raise SyntaxError("Format error .gitteam:{}".format(i + 1))
+                    if check_format(dev):
+                        team[dev[0]] = dev[1]
+                    else:
+                        raise SyntaxError("Format error .gitteam:{}".format(i + 1))
+                # Seek for Groups
+                elif ':' in line:
+                    group = format_group(line)
 
-        return team
+                    if check_format(group):
+                        groups[group[0]] = group[1]
+                    else:
+                        raise SyntaxError("Format Group error .gitteam:{}".format(i + 1))
+
+        return (team, groups)
 
     except IOError:
         raise IOError('Could not find .gitteam file')
@@ -66,7 +90,7 @@ def group_commit(team):
 
     for d in team:
         line = "\nSigned-off-by: {}".format(team[d])
-        initial_message += line.encode()
+        initial_message += line.encode('ascii', 'ignore')
 
     try:
         editor = check_output(['git', 'config', 'core.editor'])
@@ -108,7 +132,16 @@ def main():
     args = parser.parse_args()
 
     try:
-        team = read_team()
+        team, groups = read_config_file()
+        
+        # Verify if a Group is on args
+        for arg in args.initials:
+            if arg in groups.keys():
+                # If it is, remove it from args and append each group member...
+                args.initials.remove(arg)
+                for member in groups[arg]:
+                    args.initials.append(member)
+
         group = filter_team(team, args.initials)
         group_commit(group)
     except ValueError as ve:
