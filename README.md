@@ -66,18 +66,20 @@ Please refer to [CONTRIBUTING.md][1]
 Many thanks to all contributors!
 
 
-|          Name              | Photo                                                      |
-|:--------------------------:|------------------------------------------------------------|
-|[Mairieli][mairieli] Wessel |<img src="https://avatars3.githubusercontent.com/u/5549736?s=200&v=4"  alt="Mairielli" /> |
-|[Emmanuel][eamanu] Arias    |<img src="https://avatars2.githubusercontent.com/u/7605307?s=200&v=4"  alt="Emmanuel Arias"/> |
-|[Gurkirpal][gpalsingh] Singh|<img src="https://avatars2.githubusercontent.com/u/12171804?s=100&v=4" alt="Gurkirpal Singh" width="200"/> |
-|[Eloy][ehx]                 |<img src="https://avatars2.githubusercontent.com/u/3865119?s=200&v=4"  alt="Eloy"/> |
-|[Thathiane][thatiane] Rosa  |<img src="https://avatars0.githubusercontent.com/u/3801092?s=200&v=4"  alt="Thathiane"/> |
-|[Vinay][hegde5] Hegde       |<img src="https://avatars3.githubusercontent.com/u/8609211?s=200&v=4"  alt="Vinay Hedge"/> |
-|[Andre][Detril] Moukarzel   |<img src="https://avatars3.githubusercontent.com/u/17693231?s=200&v=4" alt="Andre Moukarzel"/> |
-|[Caio][CaioA] Andrade       |<img src="https://avatars3.githubusercontent.com/u/27254325?s=200&v=4" alt="Caio Andrade"/> |
-|[Pedro][pedro823] Pereira   |<img src="https://avatars2.githubusercontent.com/u/7110169?s=200&v=4"  alt="Pedro Pereira"/> |
-|[Jay][JayWelborn] Welborn   |<img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Jay Welborn"/> |
+|          Name                     | Photo                                                      |
+|:--------------------------:       |------------------------------------------------------------|
+|[Mairieli][mairieli] Wessel        |<img src="https://avatars3.githubusercontent.com/u/5549736?s=200&v=4"  alt="Mairielli" /> |
+|[Emmanuel][eamanu] Arias           |<img src="https://avatars2.githubusercontent.com/u/7605307?s=200&v=4"  alt="Emmanuel Arias"/> |
+|[Gurkirpal][gpalsingh] Singh       |<img src="https://avatars2.githubusercontent.com/u/12171804?s=100&v=4" alt="Gurkirpal Singh" width="200"/> |
+|[Eloy][ehx]                        |<img src="https://avatars2.githubusercontent.com/u/3865119?s=200&v=4"  alt="Eloy"/> |
+|[Thathiane][thatiane] Rosa         |<img src="https://avatars0.githubusercontent.com/u/3801092?s=200&v=4"  alt="Thathiane"/> |
+|[Vinay][hegde5] Hegde              |<img src="https://avatars3.githubusercontent.com/u/8609211?s=200&v=4"  alt="Vinay Hedge"/> |
+|[Andre][Detril] Moukarzel          |<img src="https://avatars3.githubusercontent.com/u/17693231?s=200&v=4" alt="Andre Moukarzel"/> |
+|[Caio][CaioA] Andrade              |<img src="https://avatars3.githubusercontent.com/u/27254325?s=200&v=4" alt="Caio Andrade"/> |
+|[Pedro][pedro823] Pereira          |<img src="https://avatars2.githubusercontent.com/u/7110169?s=200&v=4"  alt="Pedro Pereira"/> |
+|[Jay][JayWelborn] Welborn          |<img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Jay Welborn"/> |
+|[Leandro][Leandrigues] Rodrigues   |<img src="https://avatars1.githubusercontent.com/u/39068024?s=460&v=4" alt="Leandro Rodrigues" width="200"/> |
+
 
 
 
@@ -105,4 +107,6 @@ This project is licensed under the [MIT License][2]
 [CaioA]: https://github.com/CanTulio
 [pedro823]: https://github.com/pedro823
 [JayWelborn]:https://github.com/JayWelborn
+[Leandrigues]:https://github.com/Leandrigues
+
 
