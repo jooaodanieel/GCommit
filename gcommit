@@ -60,7 +60,20 @@ def filter_team(team, initials):
 def commit():
     call(["git", "commit", "-s"])
 
+def remove_member(member):
+    curr_dir = os.getcwd()
+    team_file = "{}/.gitteam".format(curr_dir)
+    new_file = ''
 
+    with open(team_file, 'r') as f:
+        for line in f:
+            formated = format_developer(line)
+            if formated[0] != member: 
+                new_file += line
+    
+    file = open(team_file, 'w')
+    file.write(new_file)
+    
 def group_commit(team):
     initial_message = b"\n"
 
@@ -105,9 +118,16 @@ def main():
     parser.add_argument(
         'initials', metavar='[INITIALS]', type=str, nargs='+',
         help='The intials of each developer defined in .gitteam')
-    args = parser.parse_args()
 
+    parser.add_argument(
+        '--remove', '-r', metavar='[INITIALS]', type=str,
+        help='Remove a member from .gitteam', dest='remotion')
+
+    args = parser.parse_args()
     try:
+        if(args.remotion):
+            # Removes initials passed with --remove
+            remove_member(args.remotion)
         team = read_team()
         group = filter_team(team, args.initials)
         group_commit(group)
