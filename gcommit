@@ -46,8 +46,6 @@ def read_team():
                                 team['teams'][dev[0]].append(member)
                             else:
                                 team['teams'].pop(dev[0],None)
-                else:
-                    raise SyntaxError("Format error .gitteam:{}".format(i + 1))
 
         return team
 
@@ -92,8 +90,7 @@ def add_member(member):
                 if check_format(dev):
                     if dev[0] == list(team['devs'].keys())[-1]:
                         dump += "{}=\"{} <{}>\"\n".format(member[0],member[1],member[2])
-                else:
-                    raise SyntaxError("Format error .gitteam:{}".format(i + 1))
+                
             f.seek(0)
             f.write(dump)
             f.truncate()
