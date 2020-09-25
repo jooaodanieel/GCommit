@@ -11,8 +11,13 @@ def format_developer(line):
     A team member must be written as
     ID="Member Name <member.email@example.com>"
     """
-    return line.replace("\n", "").split("=")
+    return line.split('#')[0].replace("\n", "").split("=")
 
+def check_dev_list(dev_info):
+    return (len(dev_info.split('<')) == 2)
+
+def check_team_decl(team_info):
+    return (len(team_info.split('<')) == 1 and len(team_info.split()) >= 1)
 
 def check_format(str_array):
     return len(str_array) == 2
@@ -20,15 +25,27 @@ def check_format(str_array):
 
 def read_team():
     try:
-        team = {}
+        team = {'devs':{}, 'teams':{}}
         curr_dir = os.getcwd()
         team_file = "{}/.gitteam".format(curr_dir)
         with open(team_file) as f:
             for i, line in enumerate(f):
                 dev = format_developer(line)
+                if len(dev) == 1:
+                    continue
 
                 if check_format(dev):
-                    team[dev[0]] = dev[1]
+                    if check_dev_list(dev[1]):
+                        team['devs'][dev[0]] = dev[1]
+                    elif check_team_decl(dev[1]):
+                        if dev[0] not in team['teams']:
+                            team['teams'][dev[0]] = []
+                        members = dev[1][1:-1].split()
+                        for member in members :
+                            if member in team['devs']:
+                                team['teams'][dev[0]].append(member)
+                            else:
+                                team['teams'].pop(dev[0],None)
                 else:
                     raise SyntaxError("Format error .gitteam:{}".format(i + 1))
 
@@ -60,6 +77,30 @@ def filter_team(team, initials):
 def commit():
     call(["git", "commit", "-s"])
 
+def add_member(member):
+    curr_dir = os.getcwd()
+    team_file = "{}/.gitteam".format(curr_dir)
+    team = read_team()
+    dump = ""
+    if member[0] in team['devs'] :
+        return 
+    try:
+        with open(team_file,'r+') as f:
+            for i, line in enumerate(f):
+                dump += line
+                dev = format_developer(line)
+                if check_format(dev):
+                    if dev[0] == list(team['devs'].keys())[-1]:
+                        dump += "{}=\"{} <{}>\"\n".format(member[0],member[1],member[2])
+                else:
+                    raise SyntaxError("Format error .gitteam:{}".format(i + 1))
+            f.seek(0)
+            f.write(dump)
+            f.truncate()
+
+    except IOError:
+        raise IOError('Could not find .gitteam file')
+
 def remove_member(member):
     curr_dir = os.getcwd()
     team_file = "{}/.gitteam".format(curr_dir)
@@ -73,7 +114,76 @@ def remove_member(member):
     
     file = open(team_file, 'w')
     file.write(new_file)
+
+def create_team(team_info):
+    team = read_team()
+    team_name = team_info[0]
+    team_members = team_info[1:]
     
+
+    if team_name in team['teams']:
+        print("The Team already exists in .gitteam")
+        return
+    else:
+        team['teams'][team_name] = []
+        flag_new_team = True
+        for dev in team_members:
+            if dev in team['devs']:
+                team['teams'][team_name].append(dev)
+            else:
+                team['teams'].pop(team_name, None)
+                flag_new_team = False
+                print("Member {} has not been added to .gitteam.\nUse --add-member to first add the user.".format(dev))
+                break
+        if flag_new_team:
+            # Dump Data .gitteam file 
+            try:
+                curr_dir = os.getcwd()
+                team_file = "{}/.gitteam".format(curr_dir)
+                dump = ""
+                with open(team_file,'r+') as f:
+                    
+                    for i, line in enumerate(f):
+                        dump += line
+                        dev = format_developer(line)
+                        if check_format(dev) and check_team_decl(dev[1]):
+                            if dev[0] == list(team['teams'].keys())[-2]:
+                                dump += "{}=\"{}\"\n".format(team_name,' '.join(team_members))
+
+                    if len(team['teams']) == 1:
+                        # Add New Entry if no other teams were created before
+                        dump += "\n{}=\"{}\"\n".format(team_name,' '.join(team_members))
+
+                    f.seek(0)
+                    f.write(dump)
+                    f.truncate()
+
+            except IOError:
+                raise IOError('Could not find .gitteam file')
+            
+def remove_team(team_name):
+    try:
+        curr_dir = os.getcwd()
+        team_file = "{}/.gitteam".format(curr_dir)
+        dump = ""
+        with open(team_file,"r+") as f:
+            for i, line in enumerate(f):
+                dev = format_developer(line)
+            
+                if check_format(dev):
+                    if check_team_decl(dev[1]) and dev[0] == team_name:
+                        continue
+                
+                dump += line
+            f.seek(0)
+            f.write(dump)
+            f.truncate()
+
+    except IOError:
+        raise IOError('Could not find .gitteam file')
+
+        
+
 def group_commit(team):
     initial_message = b"\n"
 
@@ -116,21 +226,52 @@ def main():
                     by more than one person -- pair and mob programming \
                     reality.')
     parser.add_argument(
-        'initials', metavar='[INITIALS]', type=str, nargs='+',
-        help='The intials of each developer defined in .gitteam')
+        '-sm', metavar='[INITIALS]', type=str, nargs='+',
+        help='The intials of each developer defined in .gitteam for signning off commit',dest='commitbymembers')
+    
+    parser.add_argument(
+        '-st', metavar='[INITIALS]', type=str, nargs='+',
+        help='The intials of the team defined in .gitteam for signning off commit',dest='commitbyteam')
 
     parser.add_argument(
         '--remove', '-r', metavar='[INITIALS]', type=str,
         help='Remove a member from .gitteam', dest='remotion')
+    
+    parser.add_argument(
+        '--add-member', type=str, nargs=3, metavar=('[INITIALS]','User-Name', 'E-Mail'),
+        help='Add a member to .gitteam',dest='memaddition')
+    
+    parser.add_argument(
+        '--create-team', type=str, nargs='+', metavar=('Team','[INITIALS]'),
+        help='Create New Team in .gitteam',dest='createteam')
+    
+    parser.add_argument(
+        '--remove-team', type=str, metavar='[INITIALS]',
+        help='Remove team from .gitteam',dest='removeteam')
 
     args = parser.parse_args()
     try:
         if(args.remotion):
             # Removes initials passed with --remove
             remove_member(args.remotion)
-        team = read_team()
-        group = filter_team(team, args.initials)
-        group_commit(group)
+        if(args.memaddition):
+            add_member(args.memaddition)
+        if(args.createteam):
+            create_team(args.createteam)
+        if(args.removeteam):
+            remove_team(args.removeteam)
+        if(args.commitbymembers or args.commitbyteam):
+            ls_devs = []
+            team = read_team()
+
+            if(args.commitbyteam and (args.commitbyteam[0] in team['teams'])):
+                ls_devs = team['teams'][args.commitbyteam[0]]
+            else:
+                ls_devs = args.commitbymembers
+
+            group = filter_team(team['devs'], ls_devs)
+            group_commit(group)
+            
     except ValueError as ve:
         print(ve)
     except OSError:
