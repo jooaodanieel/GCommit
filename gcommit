@@ -122,17 +122,40 @@ def main():
     parser.add_argument(
         '--remove', '-r', metavar='[INITIALS]', type=str,
         help='Remove a member from .gitteam', dest='remotion')
+    
+    parser.add_argument(
+        '--all',action='store_true',
+        help='Add all members to team commit.', dest='addall')
+    
+    parser.add_argument(
+        '--except',action='store_true',
+        help='Remove member from current team commit.' , dest='exceptcomm')
 
     all_args = parser.parse_known_args()
-    k_args = all_args[0]
-    uk_args = all_args[1]
+    k_args = all_args[0] # arguments which are detected based on above definition
+    uk_args = all_args[1] # additional arguments given by user, to be passed as it is to got commit
     try:
         if(k_args.remotion):
             # Removes initials passed with --remove
             remove_member(k_args.remotion)
         team = read_team()
-        group = filter_team(team, k_args.initials)
-        group_commit(group,uk_args)
+
+        if(k_args.addall):
+            k_args.initials = team.keys()
+            
+        if(args.exceptcomm):
+            initials_ls = [k_args.exceptcomm] + k_args.initials
+            for elem in initials_ls:
+                if elem in team:
+                    del team[elem]
+                else:
+                    print("Member {} not found in .gitteam.".format(elem))
+            group = filter_team(team, team.keys())
+            group_commit(group,uk_args)
+        else:
+            group = filter_team(team, k_args.initials)
+            group_commit(group,uk_args)
+
     except ValueError as ve:
         print(ve)
     except OSError:
