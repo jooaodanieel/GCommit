@@ -55,6 +55,12 @@ Signed-off-by: Jane Doe <jane.doe@example.com>
 Signed-off-by: João Daniel <jotaf.daniel@gmail.com>
 ```
 
+To pass other ```git commit``` command line arguments to GCommit we would have to do the following :
+
+```bash
+git gcommit JAD JD --amend
+```
+where ```--ammend``` is an argument for ```git commit``` 
 
 ## Contributing
 
@@ -79,8 +85,7 @@ Many thanks to all contributors!
 |[Pedro][pedro823] Pereira          |<img src="https://avatars2.githubusercontent.com/u/7110169?s=200&v=4"  alt="Pedro Pereira"/> |
 |[Jay][JayWelborn] Welborn          |<img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Jay Welborn"/> |
 |[Leandro][Leandrigues] Rodrigues   |<img src="https://avatars1.githubusercontent.com/u/39068024?s=460&v=4" alt="Leandro Rodrigues" width="200"/> |
-
-
+|[Parth][ParthPratim] Pratim        |<img src="https://avatars1.githubusercontent.com/u/30770796?s=460&v=4"  alt="ParthPratim"/> |
 
 
 
@@ -108,5 +113,4 @@ This project is licensed under the [MIT License][2]
 [pedro823]: https://github.com/pedro823
 [JayWelborn]:https://github.com/JayWelborn
 [Leandrigues]:https://github.com/Leandrigues
-
-
+[ParthPratim]:https://github.com/ParthPratim
