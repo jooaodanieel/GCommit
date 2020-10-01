@@ -13,8 +13,7 @@ once and reference at any commit-time.
 For installation you have to run the next command:
 
 ```
-$ sudo make install
-
+$ sudo python setup.py install
 GCommit has been installed successfully
 ```
 
