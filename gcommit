@@ -116,12 +116,16 @@ def main():
                     by more than one person -- pair and mob programming \
                     reality.')
     parser.add_argument(
-        'initials', metavar='[INITIALS]', type=str, nargs='+',
+        'initials', metavar='[INITIALS]', type=str, nargs='*',
         help='The intials of each developer defined in .gitteam')
 
     parser.add_argument(
         '--remove', '-r', metavar='[INITIALS]', type=str,
         help='Remove a member from .gitteam', dest='remotion')
+    
+    parser.add_argument(
+        '--all',action='store_true',
+        help='Add all members to team commit.', dest='addall')
 
     args = parser.parse_args()
     try:
@@ -129,6 +133,8 @@ def main():
             # Removes initials passed with --remove
             remove_member(args.remotion)
         team = read_team()
+        if(args.addall):
+            args.initials = team.keys()
         group = filter_team(team, args.initials)
         group_commit(group)
     except ValueError as ve:
