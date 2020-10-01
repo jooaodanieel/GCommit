@@ -126,6 +126,10 @@ def main():
     parser.add_argument(
         '--all',action='store_true',
         help='Add all members to team commit.', dest='addall')
+    
+    parser.add_argument(
+        '--except',action='store_true',
+        help='Remove member from current team commit.' , dest='exceptcomm')
 
     args = parser.parse_args()
     try:
@@ -133,10 +137,23 @@ def main():
             # Removes initials passed with --remove
             remove_member(args.remotion)
         team = read_team()
+
         if(args.addall):
             args.initials = team.keys()
-        group = filter_team(team, args.initials)
-        group_commit(group)
+            
+        if(args.exceptcomm):
+            initials_ls = [args.exceptcomm] + args.initials
+            for elem in initials_ls:
+                if elem in team:
+                    del team[elem]
+                else:
+                    print("Member {} not found in .gitteam.".format(elem))
+            group = filter_team(team, team.keys())
+            group_commit(group)
+        else:
+            group = filter_team(team, args.initials)
+            group_commit(group)
+
     except ValueError as ve:
         print(ve)
     except OSError:

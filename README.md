@@ -55,11 +55,21 @@ Signed-off-by: Jane Doe <jane.doe@example.com>
 Signed-off-by: João Daniel <jotaf.daniel@gmail.com>
 ```
 
+
 To add all the members of your team to the commit, you can use the following command
 
 ```bash
 git gcommit --all
 ```
+
+To remove particular members from a commit 
+
+```bash
+git gcommit --except JAD
+```
+
+This command would remove ```JAD``` and adds all others to the commit list.
+
 
 ## Contributing
 
@@ -88,6 +98,7 @@ Many thanks to all contributors!
 
 
 
+
 ## License
 
 
@@ -112,3 +123,4 @@ This project is licensed under the [MIT License][2]
 [JayWelborn]:https://github.com/JayWelborn
 [Leandrigues]:https://github.com/Leandrigues
 [ParthPratim]:https://github.com/ParthPratim
+
