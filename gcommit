@@ -124,7 +124,7 @@ def main():
         help='Remove a member from .gitteam', dest='remotion')
     
     parser.add_argument(
-        '--all',action='store_true',
+        '--sign-all',action='store_true',
         help='Add all members to team commit.', dest='addall')
     
     parser.add_argument(
