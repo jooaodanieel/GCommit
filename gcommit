@@ -143,7 +143,7 @@ def main():
         if(k_args.addall):
             k_args.initials = team.keys()
             
-        if(args.exceptcomm):
+        if(k_args.exceptcomm):
             initials_ls = [k_args.exceptcomm] + k_args.initials
             for elem in initials_ls:
                 if elem in team:
