@@ -133,7 +133,7 @@ def main():
 
     all_args = parser.parse_known_args()
     gc_args = all_args[0] # arguments which are detected based on above definition for gcommit
-    c_args = all_args[1] # additional arguments given by user, to be passed as it is to got commit
+    c_args = all_args[1] # additional arguments given by user, to be passed as it is to git commit
     try:
         if(gc_args.remotion):
             # Removes initials passed with --remove
