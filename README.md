@@ -80,22 +80,11 @@ Please refer to [CONTRIBUTING.md][1]
 
 Many thanks to all contributors!
 
-
-|          Name                     | Photo                                                      |
-|:--------------------------:       |------------------------------------------------------------|
-|[Mairieli][mairieli] Wessel        |<img src="https://avatars3.githubusercontent.com/u/5549736?s=200&v=4"  alt="Mairielli" /> |
-|[Emmanuel][eamanu] Arias           |<img src="https://avatars2.githubusercontent.com/u/7605307?s=200&v=4"  alt="Emmanuel Arias"/> |
-|[Gurkirpal][gpalsingh] Singh       |<img src="https://avatars2.githubusercontent.com/u/12171804?s=100&v=4" alt="Gurkirpal Singh" width="200"/> |
-|[Eloy][ehx]                        |<img src="https://avatars2.githubusercontent.com/u/3865119?s=200&v=4"  alt="Eloy"/> |
-|[Thathiane][thatiane] Rosa         |<img src="https://avatars0.githubusercontent.com/u/3801092?s=200&v=4"  alt="Thathiane"/> |
-|[Vinay][hegde5] Hegde              |<img src="https://avatars3.githubusercontent.com/u/8609211?s=200&v=4"  alt="Vinay Hedge"/> |
-|[Andre][Detril] Moukarzel          |<img src="https://avatars3.githubusercontent.com/u/17693231?s=200&v=4" alt="Andre Moukarzel"/> |
-|[Caio][CaioA] Andrade              |<img src="https://avatars3.githubusercontent.com/u/27254325?s=200&v=4" alt="Caio Andrade"/> |
-|[Pedro][pedro823] Pereira          |<img src="https://avatars2.githubusercontent.com/u/7110169?s=200&v=4"  alt="Pedro Pereira"/> |
-|[Jay][JayWelborn] Welborn          |<img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Jay Welborn"/> |
-|[Leandro][Leandrigues] Rodrigues   |<img src="https://avatars1.githubusercontent.com/u/39068024?s=460&v=4" alt="Leandro Rodrigues" width="200"/> |
-|[Parth][ParthPratim] Pratim        |<img src="https://avatars1.githubusercontent.com/u/30770796?s=460&v=4"  alt="ParthPratim" width="200"/> |
-
+| | | | | |
+|-|-|-|-|-|
+|<p align="center"><img src="https://avatars3.githubusercontent.com/u/5549736?s=200&v=4"  alt="Mairielli" /><br />[Mairieli][mairieli] Wessel</p>|<p align="center"><img src="https://avatars2.githubusercontent.com/u/7605307?s=200&v=4"  alt="Emmanuel Arias"/><br />[Emmanuel][eamanu] Arias</p>|<p align="center"><img src="https://avatars2.githubusercontent.com/u/12171804?s=100&v=4" alt="Gurkirpal Singh" width="200"/><br />[Gurkirpal][gpalsingh] Singh </p>|<p align="center"><img src="https://avatars2.githubusercontent.com/u/3865119?s=200&v=4"  alt="Eloy"/><br />[Eloy][ehx]</p>|<p align="center"><img src="https://avatars0.githubusercontent.com/u/3801092?s=200&v=4"  alt="Thathiane"/><br />[Thathiane][thatiane] Rosa</p>|
+|<p align="center"><img src="https://avatars3.githubusercontent.com/u/8609211?s=200&v=4"  alt="Vinay Hedge"/><br />[Vinay][hegde5] Hegde</p>|<p align="center"><img src="https://avatars3.githubusercontent.com/u/17693231?s=200&v=4" alt="Andre Moukarzel"/><br />[Andre][Detril] Moukarzel</p>|<p align="center"><img src="https://avatars3.githubusercontent.com/u/27254325?s=200&v=4" alt="Caio Andrade"/><br />[Caio][CaioA] Andrade</p>|<p align="center"><img src="https://avatars2.githubusercontent.com/u/7110169?s=200&v=4"  alt="Pedro Pereira"/><br />[Pedro][pedro823] Pereira </p>|<p align="center"><img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Jay Welborn"/><br />[Jay][JayWelborn] Welborn </p>|
+|<p align="center"><img src="https://avatars1.githubusercontent.com/u/39068024?s=460&v=4" alt="Leandro Rodrigues" width="200"/><br />[Jay][JayWelborn] Welborn </p>|<p align="center"><img src="https://avatars1.githubusercontent.com/u/20888363?s=200&v=4" alt="Jay Welborn"/><br />[Leandro][Leandrigues] Rodrigues</p>|<p align="center"><img src="https://avatars1.githubusercontent.com/u/30770796?s=460&v=4"  alt="ParthPratim" width="200"/><br />[Parth][ParthPratim] Pratim </p>|<p align="center"><img src="https://avatars1.githubusercontent.com/u/5351077?s=460&v=4"  alt="JorossBarredo" width="200"/><br />[Joross][iamjoross] Joross </p>| |
 
 
 
@@ -123,4 +112,5 @@ This project is licensed under the [MIT License][2]
 [JayWelborn]:https://github.com/JayWelborn
 [Leandrigues]:https://github.com/Leandrigues
 [ParthPratim]:https://github.com/ParthPratim
+[iamjoross]:https://github.com/iamjoross
 
