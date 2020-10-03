@@ -55,6 +55,12 @@ Signed-off-by: Jane Doe <jane.doe@example.com>
 Signed-off-by: João Daniel <jotaf.daniel@gmail.com>
 ```
 
+To pass other ```git commit``` command line arguments to GCommit we would have to do the following :
+
+```bash
+git gcommit JAD JD --amend
+```
+where ```--ammend``` is an argument for ```git commit``` 
 
 To add all the members of your team to the commit, you can use the following command
 

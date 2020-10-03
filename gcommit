@@ -74,7 +74,7 @@ def remove_member(member):
     file = open(team_file, 'w')
     file.write(new_file)
     
-def group_commit(team):
+def group_commit(team,c_args):
     initial_message = b"\n"
 
     for d in team:
@@ -100,7 +100,7 @@ def group_commit(team):
             sys.exit()
         tf.seek(0)
         edited_message = tf.read()
-        call(["git", "commit", "-m", edited_message])
+        call(["git", "commit", "-m", edited_message]+c_args)
 
 
 def main():
@@ -124,35 +124,37 @@ def main():
         help='Remove a member from .gitteam', dest='remotion')
     
     parser.add_argument(
-        '--all',action='store_true',
+        '--sign-all',action='store_true',
         help='Add all members to team commit.', dest='addall')
     
     parser.add_argument(
         '--except',action='store_true',
         help='Remove member from current team commit.' , dest='exceptcomm')
 
-    args = parser.parse_args()
+    all_args = parser.parse_known_args()
+    gc_args = all_args[0] # arguments which are detected based on above definition for gcommit
+    c_args = all_args[1] # additional arguments given by user, to be passed as it is to git commit
     try:
-        if(args.remotion):
+        if(gc_args.remotion):
             # Removes initials passed with --remove
-            remove_member(args.remotion)
+            remove_member(gc_args.remotion)
         team = read_team()
 
-        if(args.addall):
-            args.initials = team.keys()
+        if(gc_args.addall):
+            gc_args.initials = team.keys()
             
-        if(args.exceptcomm):
-            initials_ls = [args.exceptcomm] + args.initials
+        if(gc_args.exceptcomm):
+            initials_ls = [gc_args.exceptcomm] + gc_args.initials
             for elem in initials_ls:
                 if elem in team:
                     del team[elem]
                 else:
                     print("Member {} not found in .gitteam.".format(elem))
             group = filter_team(team, team.keys())
-            group_commit(group)
+            group_commit(group,c_args)
         else:
-            group = filter_team(team, args.initials)
-            group_commit(group)
+            group = filter_team(team, gc_args.initials)
+            group_commit(group,c_args)
 
     except ValueError as ve:
         print(ve)
