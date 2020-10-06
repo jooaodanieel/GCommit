@@ -14,6 +14,13 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
+def print_err(msg):
+    print(bcolors.FAIL + "Failure : {}".format(msg) + bcolors.ENDC)
+
+def print_succ(msg):
+    print(bcolors.OKGREEN + "Success : {}".format(msg) + bcolors.ENDC)
+    
 def tool_on_sys(name):
     return shutil.which(name) is not None
 
@@ -27,10 +34,10 @@ def install_to_git():
     process = execute_cmd(['make','install'])
     stdout, stderr = process.communicate()
     if stderr == b'':
-        print(bcolors.OKGREEN + "Success : {}".format(stdout.decode("utf-8") ) + bcolors.ENDC)
+        print_succ(stdout.decode("utf-8"))
     else:
-        print(bcolors.FAIL + "Failure : {}".format(stderr.decode("utf-8") ) + bcolors.ENDC)
-
+        print_err(stderr.decode("utf-8")) 
+        
 with open("README.md", "r") as fd:
     long_description = fd.read()
 
@@ -56,9 +63,9 @@ if tool_on_sys("git"):
     if (tool_on_sys("make")):
         install_to_git()
     else:
-        print(bcolors.FAIL + "Failure : make was not found on this system. Please install Git" + bcolors.ENDC)
+        print_err("Failure : 'make' was not found on this system. Please install Git")
 else:
-    print(bcolors.FAIL + "Failure : Git was not found on this system. Please install Git" + bcolors.ENDC)
+    print_err("Failure : 'git' was not found on this system. Please install Git")
     
     
 
