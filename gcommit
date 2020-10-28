@@ -4,7 +4,7 @@ import argparse
 import os
 import sys
 import tempfile
-from subprocess import call, check_output, CalledProcessError
+from subprocess import call
 
 def format_developer(line):
     """
@@ -81,26 +81,10 @@ def group_commit(team,c_args):
         line = "\nSigned-off-by: {}".format(team[d])
         initial_message += line.encode()
 
-    try:
-        editor = check_output(['git', 'config', 'core.editor'])
-        editor = editor.decode().strip()
-    except CalledProcessError:
-        editor = os.environ.get('GIT_EDITOR', 'nano')
-
     with tempfile.NamedTemporaryFile(suffix=".tmp") as tf:
         tf.write(initial_message)
         tf.flush()
-        try:
-            print(editor, tf.name)
-            call([editor, tf.name])
-        except OSError:
-            print('Error: Editor {} not found'.format(editor))
-            print("Configure the editor by setting the 'GIT_EDITOR' env variable")
-            print("Or by setting 'git config --global core.editor {editor}'")
-            sys.exit()
-        tf.seek(0)
-        edited_message = tf.read()
-        call(["git", "commit", "-m", edited_message]+c_args)
+        call(["git", "commit", "-t", tf.name]+c_args)
 
 
 def main():
