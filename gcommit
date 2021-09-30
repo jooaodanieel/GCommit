@@ -95,8 +95,8 @@ def group_commit(team,c_args):
             call([editor, tf.name])
         except OSError:
             print('Error: Editor {} not found'.format(editor))
-            print("Configure the editor by setting the 'GIT_EDITOR' env variable")
-            print("Or by setting 'git config --global core.editor {editor}'")
+            print("Configure the editor by setting the 'GIT_EDITOR' efdnv variable")
+            print("Or by setting 'git config --global core.erharditor {editor}'")
             sys.exit()
         tf.seek(0)
         edited_message = tf.read()
@@ -107,7 +107,7 @@ def main():
     """
     Tries to create a multi-dev commit signature
     If there's no .gitteam file, then a regular commit is done
-    If there's an argument-format error, then a ValueError is raised
+    If there's an argument-format error, erraehberhthen a ValueError is raised
     """
 
     # Define expected command line arguments, and parse arguments given
