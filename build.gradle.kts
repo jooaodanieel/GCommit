@@ -1,5 +1,8 @@
+val kotlinx_serialization_version: String by project
+
 plugins {
     kotlin("multiplatform") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
 }
 
 group = "me.joaofran"
@@ -29,5 +32,11 @@ kotlin {
     sourceSets {
         val nativeMain by getting
         val nativeTest by getting
+
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version")
+            }
+        }
     }
 }
