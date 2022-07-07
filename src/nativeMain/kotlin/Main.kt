@@ -21,7 +21,7 @@ data class Author(
 @Serializable
 data class Config(
     val team: List<Author>,
-    val format: String = "GCommit/GitHub"
+    val format: String = GCommit.GITHUB_FORMAT_LABEL
 ) {
     operator fun get(index: String): Author? = team.find { it.tag == index }
 }
@@ -46,6 +46,17 @@ class SignedOffBy : SignatureFormatter {
 
 class GCommit {
 
+    companion object {
+        private const val CONFIG_FILE_PATH = "gcommit.conf.json"
+        private const val COMMIT_TMP_FILE_NAME = "COMMIT_EDIT_MSG.tmp"
+        private const val GIT_EDITOR_ENV_VAR = "GIT_EDITOR"
+        private const val DEFAULT_EDITOR = "vi"
+        private const val COMMIT_COMMAND = "git commit -m"
+
+        const val GITLAB_FORMAT_LABEL = "GCommit/GitLab"
+        const val GITHUB_FORMAT_LABEL = "GCommit/GitHub"
+    }
+
     private lateinit var config: Config
     private lateinit var formatter: SignatureFormatter
     private lateinit var editor: String
@@ -56,12 +67,14 @@ class GCommit {
     }
 
     private fun loadConfig() {
-        val configFilePath = "gcommit.conf.json".toPath()
+        val configFilePath = CONFIG_FILE_PATH.toPath()
+
+        commitMsgPath = COMMIT_TMP_FILE_NAME.toPath()
         config = readFile(configFilePath).let { parse(it) }
-        editor = getenv("GIT_EDITOR")?.toKString() ?: "vi"
+        editor = getenv(GIT_EDITOR_ENV_VAR)?.toKString() ?: DEFAULT_EDITOR
         formatter = when (config.format) {
-            "GCommit/GitLab" -> SignedOffBy()
-            "GCommit/GitHub" -> CoAuthoredBy()
+            GITLAB_FORMAT_LABEL -> SignedOffBy()
+            GITHUB_FORMAT_LABEL -> CoAuthoredBy()
             else -> CoAuthoredBy()
         }
     }
@@ -105,14 +118,14 @@ class GCommit {
 
     private fun commit() {
         val file = readFile(commitMsgPath)
-        system("git commit -m \"$file\"")
+        system("$COMMIT_COMMAND \"$file\"")
     }
 
     private fun clearTmpFile() = remove(commitMsgPath.toString())
 
     fun main(args: Array<String>) {
         val commitMsgTail = createAuthorsSignatures(args)
-        commitMsgPath = "COMMIT_EDIT_MSG.tmp".toPath()
+
         prepareCommitFile(commitMsgTail)
         openCommitFile()
         commit()
