@@ -7,74 +7,67 @@ GCommit is a git-plugin that eases how to commit when you need to sign for
 more than one person -- pair and mob programming reality.
 
 Instead of having to set manually the other developers names, you can define
-once and reference at any commit-time.
+once in a configuration file, and simply reference it at any commit-time.
 
 ## Installation
-For installation you have to run the next command:
 
-```
-$ sudo make install
-
-GCommit has been installed successfully
-```
-
-## Uninstall
-For Uninstallation you have to run the next command:
-
-```
-$ sudo make uninstall
-```
-
+> TODO: add installation steps, considering `libcrypt.so.1`
 
 ## How to use
 
-GCommit reads a file that defines your teammates signatures, so first create
-a `.gitteam` file in your project's root directory, that follows the following
-structure:
+GCommit relies on a configuration file `gcommit.conf.json`. In it, there are two settings you define:
 
-```plain
-JD="João Daniel <jotaf.daniel@gmail.com>"
-JOD="John Doe <jon.doe@example.com>"
-JAD="Jane Doe <jane.doe@example.com>"
+1. the team
+
+Each member of the team is defined by:
+
+- the **name** to be displayed
+- the **email** to be displayed
+- a **tag** to act as a reference
+
+So, for instance, a team member can be defined in `gcommit.conf.json` as follows:
+
+```json
+{
+  "team": [
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "tag": "JD"
+    }
+  ],
+  
+  // ... other aspects ...
+  
+}
 ```
 
-> note: there's no empty line at the end
+GCommit makes it easier to sign commits by providing a quick reference to a stored team member.
+The **tag** is the "quick reference".
+So make sure to inform unique tags ;)
 
-Once you have `.gitteam` in your repository, you can commit something using:
+2. the signature format
 
-```bash
-git gcommit JAD JD
+GCommit works for multiple Code Repository platforms, such as [GitHub][github] and [GitLab][gitlab] 
+-- so far, that's all GCommit supports.
+
+Each platform has its own signature template to account activities for users,
+so you can configure which format to adopt.
+
+Out-of-the-box, GCommit supports GitHub's `Co-authored-by: Name <email>` (default)
+and GitLab's `Signed-off-by: Name <email>`.
+
+In the config file, you can choose which format to use:
+
+```json
+{
+  // ... other aspects ...
+
+  "format": "GCommit/GitHub"
+}
 ```
 
-This will generate a initial commit message like this:
-
-```plain
-
-
-Signed-off-by: Jane Doe <jane.doe@example.com>
-Signed-off-by: João Daniel <jotaf.daniel@gmail.com>
-```
-
-To pass other ```git commit``` command line arguments to GCommit we would have to do the following :
-
-```bash
-git gcommit JAD JD --amend
-```
-where ```--ammend``` is an argument for ```git commit``` 
-
-To add all the members of your team to the commit, you can use the following command
-
-```bash
-git gcommit --all
-```
-
-To remove particular members from a commit 
-
-```bash
-git gcommit --except JAD
-```
-
-This command would remove ```JAD``` and adds all others to the commit list.
+> in case you wish to follow GitLab's format, use `"GCommit/GitLab"` instead
 
 
 ## Contributing
@@ -119,4 +112,7 @@ This project is licensed under the [MIT License][2]
 [Leandrigues]:https://github.com/Leandrigues
 [ParthPratim]:https://github.com/ParthPratim
 [iamjoross]:https://github.com/iamjoross
+
+[github]: https://github.com
+[gitlab]: https://gitlab.com
 
