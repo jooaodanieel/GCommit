@@ -11,7 +11,17 @@ once in a configuration file, and simply reference it at any commit-time.
 
 ## Installation
 
-> TODO: add installation steps, considering `libcrypt.so.1`
+> This is a temporary approach, the intention is to bind installation to GitHub releases
+
+First, ensure you have `libcrypt.so.1` available in your system.
+
+```bash
+# build the GCommit executable
+./gradlew build
+
+# copy to a directory within your PATH and name it "git-commit"
+sudo cp build/bin/native/releaseExecutable/g-commit.kexe /usr/local/bin/git-commit
+```
 
 ## How to use
 
@@ -33,7 +43,12 @@ So, for instance, a team member can be defined in `gcommit.conf.json` as follows
     {
       "name": "John Doe",
       "email": "john.doe@example.com",
-      "tag": "JD"
+      "tag": "JOD"
+    },
+    {
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "tag": "JAD"
     }
   ],
   
@@ -63,11 +78,22 @@ In the config file, you can choose which format to use:
 {
   // ... other aspects ...
 
-  "format": "GCommit/GitHub"
+  "format": "GCommit/GitLab"
 }
 ```
 
-> in case you wish to follow GitLab's format, use `"GCommit/GitLab"` instead
+> in case you wish to follow GitHub's format instead, use `"GCommit/GitHub"` or even don't define
+> the format since it's the default
+
+Place the `gcommit.conf.json` at the root of the project, and we recommend to add it to Git Ignore file.
+
+Then, after adding changes to git staging area, simply run
+
+```bash
+git gcommit JOD JAD
+```
+
+> in the case you want to sign with the entire team, you can simply run `git gcommit` with no arguments
 
 
 ## Contributing
