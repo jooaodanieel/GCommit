@@ -1,1 +1,8 @@
-fun main(args: Array<String>) = GCommit().main(args)
+import model.GCommit
+import platform.FileSystemImpl
+import platform.OperatingSystemImpl
+
+fun main(args: Array<String>) = GCommit(
+    fileSystem = FileSystemImpl(),
+    operatingSystem = OperatingSystemImpl()
+).main(args)
