@@ -1,6 +1,5 @@
 package model
 
-import GCommit
 import kotlinx.serialization.Serializable
 
 @Serializable
