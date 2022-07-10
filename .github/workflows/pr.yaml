@@ -1,0 +1,21 @@
+name: pr-verifications
+on: [pull-request]
+
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: fwilhe2/setup-kotlin@main
+      with:
+        install-native: true
+    - name: build non-win
+      run: ./gradlew build
+      if: ${{ matrix.os !== 'windows-latest' }}
+    - name: build win
+      run: ./gradlew.bat build
+      if: ${{ matrix.os !== 'windows-latest' }}
