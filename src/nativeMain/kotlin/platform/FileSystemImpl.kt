@@ -1,5 +1,6 @@
 package platform
 
+import model.ConfigNotFoundException
 import model.FileSystem
 import okio.Path.Companion.toPath
 import okio.buffer
@@ -10,17 +11,21 @@ class FileSystemImpl : FileSystem {
     override fun readFile(fileName: String): String {
         val filePath = fileName.toPath()
 
-        var content = ""
-        okio.FileSystem.SYSTEM.source(filePath).use { fs ->
-            fs.buffer().use { buff ->
-                while (true) {
-                    val line = buff.readUtf8Line() ?: break
-                    content += line + "\n"
+        try {
+            var content = ""
+            okio.FileSystem.SYSTEM.source(filePath).use { fs ->
+                fs.buffer().use { buff ->
+                    while (true) {
+                        val line = buff.readUtf8Line() ?: break
+                        content += line + "\n"
+                    }
                 }
             }
-        }
 
-        return content
+            return content
+        } catch (_: okio.FileNotFoundException) {
+            throw ConfigNotFoundException()
+        }
     }
 
     override fun writeFile(fileName: String, content: String) {

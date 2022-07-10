@@ -5,7 +5,7 @@ import formatters.SignedOffBy
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-class GCommit(
+class GCommit private constructor(
     private val fileSystem: FileSystem,
     private val operatingSystem: OperatingSystem
 ) {
@@ -19,6 +19,14 @@ class GCommit(
 
         const val GITLAB_FORMAT_LABEL = "GCommit/GitLab"
         const val GITHUB_FORMAT_LABEL = "GCommit/GitHub"
+
+        fun main(fileSystem: FileSystem, operatingSystem: OperatingSystem, args: Array<String>) {
+            try {
+                GCommit(fileSystem, operatingSystem).run(args)
+            } catch (gce: GCommitException) {
+                println(gce.message)
+            }
+        }
     }
 
     private lateinit var config: Config
@@ -39,7 +47,13 @@ class GCommit(
         }
     }
 
-    private fun parse(jsonContent: String): Config = Json.decodeFromString(jsonContent)
+    private fun parse(jsonContent: String): Config {
+        try {
+            return Json.decodeFromString(jsonContent)
+        } catch (_: Exception) {
+            throw MalformedConfigFileException()
+        }
+    }
 
     private fun createAuthorsSignatures(tags: Array<String>): String {
         return tags
@@ -64,7 +78,7 @@ class GCommit(
 
     private fun clearTmpFile() = fileSystem.removeFile(COMMIT_TMP_FILE_NAME)
 
-    fun main(args: Array<String>) {
+    private fun run(args: Array<String>) {
         val commitMsgTail = createAuthorsSignatures(args)
 
         prepareCommitFile(commitMsgTail)
