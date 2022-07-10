@@ -1,0 +1,62 @@
+name: Create a new GitHub Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+
+jobs:
+  build-non-win:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: fwilhe2/setup-kotlin@main
+        with:
+          install-native: true
+      - run: ./gradlew build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gcommit-${{ matrix.os }}.kexe
+          path: build/bin/native/releaseExecutable/g-commit.kexe
+
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: fwilhe2/setup-kotlin@main
+        with:
+          install-native: true
+      - run: ./gradlew.bat build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gcommit-windows-latest.kexe
+          path: build/bin/native/releaseExecutable/g-commit.kexe
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        name: download ubuntu
+        with:
+          name: gcommit-ubuntu-latest.kexe
+      - uses: actions/download-artifact@v3
+        name: download macos
+        with:
+          name: gcommit-macos-latest.kexe
+      - uses: actions/download-artifact@v3
+        name: download windows
+        with:
+          name: gcommit-windows-latest.kexe
+
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.RELEASE_TOKEN }}
+          title: GCommit
+          files: |
+            gcommit-windows-latest.kexe
+            gcommit-macos-latest.kexe
+            gcommit-ubuntu-latest.kexe
