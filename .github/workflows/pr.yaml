@@ -15,7 +15,7 @@ jobs:
         install-native: true
     - name: build non-win
       run: ./gradlew build
-      if: ${{ matrix.os !== 'windows-latest' }}
+      if: ${{ matrix.os != 'windows-latest' }}
     - name: build win
       run: ./gradlew.bat build
-      if: ${{ matrix.os !== 'windows-latest' }}
+      if: ${{ matrix.os == 'windows-latest' }}
