@@ -11,9 +11,20 @@ once in a configuration file, and simply reference it at any commit-time.
 
 ## Installation
 
-> This is a temporary approach, the intention is to bind installation to GitHub releases
+> for linux users
 
 First, ensure you have `libcrypt.so.1` available in your system.
+
+Then head to [releases][releases] page, download [g-commit.kexe][exec] and store into a directory within your `$PATH`.
+
+Make sure these three things:
+
+1. it is called `git-gcommit`
+2. it is placed within your `$PATH`
+3. it is executable
+
+
+If you're interested in building it manually,
 
 ```bash
 # build the GCommit executable
@@ -142,3 +153,5 @@ This project is licensed under the [MIT License][2]
 [github]: https://github.com
 [gitlab]: https://gitlab.com
 
+[releases]: https://github.com/jooaodanieel/GCommit/releases
+[exec]: https://github.com/jooaodanieel/GCommit/releases/download/v0.1-linux/g-commit.kexe
