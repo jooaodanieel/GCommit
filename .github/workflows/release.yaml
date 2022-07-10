@@ -18,10 +18,11 @@ jobs:
         with:
           install-native: true
       - run: ./gradlew build
+      - run: mv build/bin/native/releaseExecutable/g-commit.kexe build/bin/native/releaseExecutable/g-commit-${{ matrix.os }}.kexe
       - uses: actions/upload-artifact@v3
-        with:
-          name: gcommit-${{ matrix.os }}.kexe
-          path: build/bin/native/releaseExecutable/g-commit.kexe
+        with: 
+          name: gcommit-${{ matrix.os }}
+          path: build/bin/native/releaseExecutable/g-commit-${{ matrix.os }}.kexe
 
   release:
     runs-on: ubuntu-latest
@@ -30,16 +31,19 @@ jobs:
       - uses: actions/download-artifact@v3
         name: download ubuntu
         with:
-          name: gcommit-ubuntu-latest.kexe
+          name: gcommit-ubuntu-latest
       - uses: actions/download-artifact@v3
         name: download macos
         with:
-          name: gcommit-macos-latest.kexe
+          name: gcommit-macos-latest
+
+      - run: ls -R
 
       - uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ secrets.RELEASE_TOKEN }}
           title: GCommit
+          prerelease: false
           files: |
-            gcommit-macos-latest.kexe
-            gcommit-ubuntu-latest.kexe
+            g-commit-macos-latest.kexe
+            g-commit-ubuntu-latest.kexe
