@@ -4,6 +4,7 @@ val okio_version: String by project
 plugins {
     kotlin("multiplatform") version "1.7.10"
     kotlin("plugin.serialization") version "1.7.10"
+    id("org.jetbrains.dokka") version "1.7.0"
 }
 
 group = "me.joaofran"
