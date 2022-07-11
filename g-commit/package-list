@@ -1,0 +1,56 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/g-commit/[root]/index.html
+$dokka.location://main/#kotlin.Array[kotlin.String]/PointingToDeclaration/g-commit/[root]/main.html
+$dokka.location:formatters////PointingToDeclaration/g-commit/formatters/index.html
+$dokka.location:formatters/CoAuthoredBy///PointingToDeclaration/g-commit/formatters/-co-authored-by/index.html
+$dokka.location:formatters/CoAuthoredBy/CoAuthoredBy/#/PointingToDeclaration/g-commit/formatters/-co-authored-by/-co-authored-by.html
+$dokka.location:formatters/CoAuthoredBy/generateSignatures/#kotlin.collections.List[model.Author]/PointingToDeclaration/g-commit/formatters/-co-authored-by/generate-signatures.html
+$dokka.location:formatters/SignedOffBy///PointingToDeclaration/g-commit/formatters/-signed-off-by/index.html
+$dokka.location:formatters/SignedOffBy/SignedOffBy/#/PointingToDeclaration/g-commit/formatters/-signed-off-by/-signed-off-by.html
+$dokka.location:formatters/SignedOffBy/generateSignatures/#kotlin.collections.List[model.Author]/PointingToDeclaration/g-commit/formatters/-signed-off-by/generate-signatures.html
+$dokka.location:model////PointingToDeclaration/g-commit/model/index.html
+$dokka.location:model/Author///PointingToDeclaration/g-commit/model/-author/index.html
+$dokka.location:model/Author/Author/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/g-commit/model/-author/-author.html
+$dokka.location:model/Author/email/#/PointingToDeclaration/g-commit/model/-author/email.html
+$dokka.location:model/Author/name/#/PointingToDeclaration/g-commit/model/-author/name.html
+$dokka.location:model/Author/tag/#/PointingToDeclaration/g-commit/model/-author/tag.html
+$dokka.location:model/Config///PointingToDeclaration/g-commit/model/-config/index.html
+$dokka.location:model/Config/Config/#kotlin.collections.List[model.Author]#kotlin.String/PointingToDeclaration/g-commit/model/-config/-config.html
+$dokka.location:model/Config/format/#/PointingToDeclaration/g-commit/model/-config/format.html
+$dokka.location:model/Config/get/#kotlin.String/PointingToDeclaration/g-commit/model/-config/get.html
+$dokka.location:model/Config/team/#/PointingToDeclaration/g-commit/model/-config/team.html
+$dokka.location:model/ConfigNotFoundException///PointingToDeclaration/g-commit/model/-config-not-found-exception/index.html
+$dokka.location:model/ConfigNotFoundException/ConfigNotFoundException/#/PointingToDeclaration/g-commit/model/-config-not-found-exception/-config-not-found-exception.html
+$dokka.location:model/FileSystem///PointingToDeclaration/g-commit/model/-file-system/index.html
+$dokka.location:model/FileSystem/readFile/#kotlin.String/PointingToDeclaration/g-commit/model/-file-system/read-file.html
+$dokka.location:model/FileSystem/removeFile/#kotlin.String/PointingToDeclaration/g-commit/model/-file-system/remove-file.html
+$dokka.location:model/FileSystem/writeFile/#kotlin.String#kotlin.String/PointingToDeclaration/g-commit/model/-file-system/write-file.html
+$dokka.location:model/GCommit.Companion///PointingToDeclaration/g-commit/model/-g-commit/-companion/index.html
+$dokka.location:model/GCommit.Companion/GITHUB_FORMAT_LABEL/#/PointingToDeclaration/g-commit/model/-g-commit/-companion/-g-i-t-h-u-b_-f-o-r-m-a-t_-l-a-b-e-l.html
+$dokka.location:model/GCommit.Companion/GITLAB_FORMAT_LABEL/#/PointingToDeclaration/g-commit/model/-g-commit/-companion/-g-i-t-l-a-b_-f-o-r-m-a-t_-l-a-b-e-l.html
+$dokka.location:model/GCommit.Companion/main/#model.FileSystem#model.OperatingSystem#kotlin.Array[kotlin.String]/PointingToDeclaration/g-commit/model/-g-commit/-companion/main.html
+$dokka.location:model/GCommit///PointingToDeclaration/g-commit/model/-g-commit/index.html
+$dokka.location:model/GCommitException///PointingToDeclaration/g-commit/model/-g-commit-exception/index.html
+$dokka.location:model/GCommitException/GCommitException/#kotlin.String/PointingToDeclaration/g-commit/model/-g-commit-exception/-g-commit-exception.html
+$dokka.location:model/MalformedConfigFileException///PointingToDeclaration/g-commit/model/-malformed-config-file-exception/index.html
+$dokka.location:model/MalformedConfigFileException/MalformedConfigFileException/#/PointingToDeclaration/g-commit/model/-malformed-config-file-exception/-malformed-config-file-exception.html
+$dokka.location:model/OperatingSystem///PointingToDeclaration/g-commit/model/-operating-system/index.html
+$dokka.location:model/OperatingSystem/exec/#kotlin.String/PointingToDeclaration/g-commit/model/-operating-system/exec.html
+$dokka.location:model/OperatingSystem/getEnvValue/#kotlin.String/PointingToDeclaration/g-commit/model/-operating-system/get-env-value.html
+$dokka.location:model/SignatureFormatter///PointingToDeclaration/g-commit/model/-signature-formatter/index.html
+$dokka.location:model/SignatureFormatter/generateSignatures/#kotlin.collections.List[model.Author]/PointingToDeclaration/g-commit/model/-signature-formatter/generate-signatures.html
+$dokka.location:platform////PointingToDeclaration/g-commit/platform/index.html
+$dokka.location:platform/FileSystemImpl///PointingToDeclaration/g-commit/platform/-file-system-impl/index.html
+$dokka.location:platform/FileSystemImpl/FileSystemImpl/#/PointingToDeclaration/g-commit/platform/-file-system-impl/-file-system-impl.html
+$dokka.location:platform/FileSystemImpl/readFile/#kotlin.String/PointingToDeclaration/g-commit/platform/-file-system-impl/read-file.html
+$dokka.location:platform/FileSystemImpl/removeFile/#kotlin.String/PointingToDeclaration/g-commit/platform/-file-system-impl/remove-file.html
+$dokka.location:platform/FileSystemImpl/writeFile/#kotlin.String#kotlin.String/PointingToDeclaration/g-commit/platform/-file-system-impl/write-file.html
+$dokka.location:platform/OperatingSystemImpl///PointingToDeclaration/g-commit/platform/-operating-system-impl/index.html
+$dokka.location:platform/OperatingSystemImpl/OperatingSystemImpl/#/PointingToDeclaration/g-commit/platform/-operating-system-impl/-operating-system-impl.html
+$dokka.location:platform/OperatingSystemImpl/exec/#kotlin.String/PointingToDeclaration/g-commit/platform/-operating-system-impl/exec.html
+$dokka.location:platform/OperatingSystemImpl/getEnvValue/#kotlin.String/PointingToDeclaration/g-commit/platform/-operating-system-impl/get-env-value.html
+formatters
+model
+platform
+
