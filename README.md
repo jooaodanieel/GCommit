@@ -11,11 +11,11 @@ once in a configuration file, and simply reference it at any commit-time.
 
 ## Installation
 
-> for linux users
+> Windows users, help us! Check [this issue][win-issue] :)
 
 First, ensure you have `libcrypt.so.1` available in your system.
 
-Then head to [releases][releases] page, download [g-commit.kexe][exec] and store into a directory within your `$PATH`.
+Then head to [releases][releases] page, download the latest `g-commit-<OS>-latest.kexe`¹ and store into a directory within your `$PATH`.
 
 Make sure these three things:
 
@@ -23,6 +23,7 @@ Make sure these three things:
 2. it is placed within your `$PATH`
 3. it is executable
 
+> ¹ if you're a linux user, the `ubuntu` build should work just fine
 
 If you're interested in building it manually,
 
@@ -153,5 +154,5 @@ This project is licensed under the [MIT License][2]
 [github]: https://github.com
 [gitlab]: https://gitlab.com
 
+[win-issue]: https://github.com/jooaodanieel/GCommit/issues/55
 [releases]: https://github.com/jooaodanieel/GCommit/releases
-[exec]: https://github.com/jooaodanieel/GCommit/releases/download/v0.1-linux/g-commit.kexe
