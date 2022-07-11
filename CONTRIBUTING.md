@@ -2,10 +2,13 @@
 
 All contributions are welcome!
 
+Check the [documentation][docs] to have a better understanding of the code.
+
 If you'd like to submit a change, please create a Pull-Request. There are some
 [issues][1] in the repository on which you can base your contribution.
 
 Don't forget to add yourself as a contributor to the project README section!
+
 
 ## Creating a PR
 
@@ -19,4 +22,5 @@ Don't forget to add yourself as a contributor to the project README section!
 
 
 
+[docs]: https://jooaodanieel.github.io/GCommit/
 [1]: https://github.com/jooaodanieel/GCommit/issues

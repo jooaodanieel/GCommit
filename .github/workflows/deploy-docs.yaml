@@ -1,0 +1,22 @@
+name: Deploy docs
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build project
+        run: ./gradlew build
+
+      - name: Build docs
+        run: ./gradlew dokkaHtml
+
+      - name: Deploy docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/dokka/html
