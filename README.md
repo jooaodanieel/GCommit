@@ -1,5 +1,6 @@
 ![GCommit](GCommitLogo.png)
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jooaodanieel/GCommit/Create%20a%20new%20GitHub%20Release?style=for-the-badge) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jooaodanieel/GCommit?style=for-the-badge)  ![GitHub all releases](https://img.shields.io/github/downloads/jooaodanieel/GCommit/total?color=orange&style=for-the-badge) ![GitHub contributors](https://img.shields.io/github/contributors/jooaodanieel/GCommit?color=purple&style=for-the-badge)
 
 # GCommit - Group Commit
 
