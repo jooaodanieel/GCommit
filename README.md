@@ -12,7 +12,19 @@ once in a configuration file, and simply reference it at any commit-time.
 
 ## Installation
 
+There are three methods for installing GCommit
+
 > Windows users, help us! Check [this issue][win-issue] :)
+
+### 1) AUR
+
+GCommit is available at the [Arch User Repository][aur], so you can easily install via `yay`
+
+```bash
+yay -S gcommit-git
+```
+
+### 2) GitHub Releases
 
 First, ensure you have `libcrypt.so.1` available in your system.
 
@@ -25,6 +37,8 @@ Make sure these three things:
 3. it is executable
 
 > ¹ if you're a linux user, the `ubuntu` build should work just fine
+
+### 3) Manual build
 
 If you're interested in building it manually,
 
@@ -156,4 +170,5 @@ This project is licensed under the [MIT License][2]
 [gitlab]: https://gitlab.com
 
 [win-issue]: https://github.com/jooaodanieel/GCommit/issues/55
+[aur]: https://aur.archlinux.org/packages/gcommit-git
 [releases]: https://github.com/jooaodanieel/GCommit/releases
