@@ -2,8 +2,13 @@ package model
 
 import formatters.CoAuthoredBy
 import formatters.SignedOffBy
+import kotlinx.cinterop.refTo
+import kotlinx.cinterop.toKString
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import platform.posix.fgets
+import platform.posix.pclose
+import platform.posix.popen
 
 /**
  * The main class, the CLI tool
@@ -24,6 +29,7 @@ class GCommit private constructor(
         private const val GIT_EDITOR_ENV_VAR = "GIT_EDITOR"
         private const val DEFAULT_EDITOR = "vi"
         private const val COMMIT_COMMAND = "git commit -m"
+        private const val STATUS_COMMAND = "git status --porcelain"
 
         const val GITLAB_FORMAT_LABEL = "GCommit/GitLab"
         const val GITHUB_FORMAT_LABEL = "GCommit/GitHub"
@@ -90,6 +96,29 @@ class GCommit private constructor(
     }
 
     /**
+     * Retrieves the status
+     *
+     * Retrieves the status of the work tree to understand if there are any changes to commit
+     *
+     * @return a [String] with the list of files that have been changed
+     * @throws IllegalStateException
+     */
+    private fun retrieveStatus(): String {
+        val fp = popen(STATUS_COMMAND, "r") ?: error("Failed to run command: $STATUS_COMMAND")
+
+        val stdout = buildString {
+            val buffer = ByteArray(4096)
+            while (true) {
+                val input = fgets(buffer.refTo(0), buffer.size, fp) ?: break
+                append(input.toKString())
+            }
+        }
+
+        pclose(fp)
+        return stdout
+    }
+
+    /**
      * Generate the signatures from the tags
      *
      * Generate the signatures of the commit based on the chosen formatter and on the provided list of [Author] tags.
@@ -151,6 +180,9 @@ class GCommit private constructor(
      * @param args the input from CLI execution arguments
      */
     private fun run(args: Array<String>) {
+        val status = retrieveStatus()
+        if (status.isEmpty()) throw GCommitException("nothing to commit, working tree clean")
+
         val commitMsgTail = createAuthorsSignatures(args)
 
         prepareCommitFile(commitMsgTail)
