@@ -122,6 +122,12 @@ git gcommit JOD JAD
 
 > in the case you want to sign with the entire team, you can simply run `git gcommit` with no arguments
 
+In case there are no changes to commit the commit file won´t be opened and you will get the message:
+```bash
+gcommit: nothing to commit, working tree clean
+
+check your directory and run again
+```
 
 ## Contributing
 
@@ -165,6 +171,7 @@ This project is licensed under the [MIT License][2]
 [Leandrigues]:https://github.com/Leandrigues
 [ParthPratim]:https://github.com/ParthPratim
 [iamjoross]:https://github.com/iamjoross
+[doriancodes]:https://github.com/doriancodes
 
 [github]: https://github.com
 [gitlab]: https://gitlab.com
