@@ -30,6 +30,7 @@ class GCommit private constructor(
         private const val DEFAULT_EDITOR = "vi"
         private const val COMMIT_COMMAND = "git commit -m"
         private const val STATUS_COMMAND = "git status --porcelain"
+        private const val DIFF_COMMAND = "git diff --name-only"
 
         const val GITLAB_FORMAT_LABEL = "GCommit/GitLab"
         const val GITHUB_FORMAT_LABEL = "GCommit/GitHub"
@@ -96,15 +97,32 @@ class GCommit private constructor(
     }
 
     /**
-     * Retrieves the status
+     * Checks for valid changes
      *
-     * Retrieves the status of the work tree to understand if there are any changes to commit
+     * Checks for valid changes in the work tree. It throws an exception if there are no changes to commit or if the
+     * changes have not been added
      *
-     * @return a [String] with the list of files that have been changed
+     * @throws GCommitException
+     */
+    private fun checkForValidChanges() {
+        val maybeUnstagedChanges = getCommandOutput(DIFF_COMMAND)
+        if (maybeUnstagedChanges.isNotEmpty())
+            throw GCommitException("Unstaged changes in file(s): \n\n$maybeUnstagedChanges")
+
+        val status = getCommandOutput(STATUS_COMMAND)
+        if (status.isEmpty()) throw GCommitException("nothing to commit, working tree clean")
+    }
+
+    /**
+     * Gets a command output
+     *
+     * Gets a command output at type String
+     *
+     * @return a [String] with the result from the command
      * @throws IllegalStateException
      */
-    private fun retrieveStatus(): String {
-        val fp = popen(STATUS_COMMAND, "r") ?: error("Failed to run command: $STATUS_COMMAND")
+    private fun getCommandOutput(command: String): String {
+        val fp = popen(command, "r") ?: error("Failed to run command: $STATUS_COMMAND")
 
         val stdout = buildString {
             val buffer = ByteArray(4096)
@@ -114,7 +132,11 @@ class GCommit private constructor(
             }
         }
 
-        pclose(fp)
+        val status = pclose(fp)
+        if (status != 0) {
+            error("Command `$command` failed with status $status : $stdout")
+        }
+
         return stdout
     }
 
@@ -180,8 +202,7 @@ class GCommit private constructor(
      * @param args the input from CLI execution arguments
      */
     private fun run(args: Array<String>) {
-        val status = retrieveStatus()
-        if (status.isEmpty()) throw GCommitException("nothing to commit, working tree clean")
+        checkForValidChanges()
 
         val commitMsgTail = createAuthorsSignatures(args)
 
