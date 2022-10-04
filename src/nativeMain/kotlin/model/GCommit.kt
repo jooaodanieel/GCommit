@@ -2,8 +2,13 @@ package model
 
 import formatters.CoAuthoredBy
 import formatters.SignedOffBy
+import kotlinx.cinterop.refTo
+import kotlinx.cinterop.toKString
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import platform.posix.fgets
+import platform.posix.pclose
+import platform.posix.popen
 
 /**
  * The main class, the CLI tool
@@ -24,6 +29,8 @@ class GCommit private constructor(
         private const val GIT_EDITOR_ENV_VAR = "GIT_EDITOR"
         private const val DEFAULT_EDITOR = "vi"
         private const val COMMIT_COMMAND = "git commit -m"
+        private const val STATUS_COMMAND = "git status --porcelain"
+        private const val DIFF_COMMAND = "git diff --name-only"
 
         const val GITLAB_FORMAT_LABEL = "GCommit/GitLab"
         const val GITHUB_FORMAT_LABEL = "GCommit/GitHub"
@@ -90,6 +97,50 @@ class GCommit private constructor(
     }
 
     /**
+     * Checks for valid changes
+     *
+     * Checks for valid changes in the work tree. It throws an exception if there are no changes to commit or if the
+     * changes have not been added
+     *
+     * @throws GCommitException
+     */
+    private fun checkForValidChanges() {
+        val maybeUnstagedChanges = getCommandOutput(DIFF_COMMAND)
+        if (maybeUnstagedChanges.isNotEmpty())
+            throw GCommitException("Unstaged changes in file(s): \n\n$maybeUnstagedChanges")
+
+        val status = getCommandOutput(STATUS_COMMAND)
+        if (status.isEmpty()) throw GCommitException("nothing to commit, working tree clean")
+    }
+
+    /**
+     * Gets a command output
+     *
+     * Gets a command output at type String
+     *
+     * @return a [String] with the result from the command
+     * @throws IllegalStateException
+     */
+    private fun getCommandOutput(command: String): String {
+        val fp = popen(command, "r") ?: error("Failed to run command: $STATUS_COMMAND")
+
+        val stdout = buildString {
+            val buffer = ByteArray(4096)
+            while (true) {
+                val input = fgets(buffer.refTo(0), buffer.size, fp) ?: break
+                append(input.toKString())
+            }
+        }
+
+        val status = pclose(fp)
+        if (status != 0) {
+            error("Command `$command` failed with status $status : $stdout")
+        }
+
+        return stdout
+    }
+
+    /**
      * Generate the signatures from the tags
      *
      * Generate the signatures of the commit based on the chosen formatter and on the provided list of [Author] tags.
@@ -151,6 +202,8 @@ class GCommit private constructor(
      * @param args the input from CLI execution arguments
      */
     private fun run(args: Array<String>) {
+        checkForValidChanges()
+
         val commitMsgTail = createAuthorsSignatures(args)
 
         prepareCommitFile(commitMsgTail)
