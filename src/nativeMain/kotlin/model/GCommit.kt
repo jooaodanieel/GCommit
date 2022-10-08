@@ -143,18 +143,38 @@ class GCommit private constructor(
     /**
      * Generate the signatures from the tags
      *
-     * Generate the signatures of the commit based on the chosen formatter and on the provided list of [Author] tags.
-     * If no tag is provided, or no author is found, returns the signatures of all configured authors.
+     * Generate the signatures of the commit based on the chosen formatter and on the provided list of [Author] fetched
+     * from the [Config].
      *
-     * @param tags the input from CLI execution arguments
+     * @param args the input from CLI execution arguments
      * @return a string with the formatted signatures
      */
-    private fun createAuthorsSignatures(tags: Array<String>): String {
-        return tags
+    private fun createAuthorsSignatures(args: Array<String>): String {
+        return formatter.generateSignatures(fetchAuthors(args))
+    }
+
+    /**
+     * Fetch the authors from the provided args
+     *
+     * Fetch the authors from the provided args and returns a list of [Author].
+     * If the first argument is found in the [NamedTeams] the relative list of [Author] is returned
+     * If the arguments are tags the relative list of [Author] is returned
+     * If no tag or [NamedTeams] are provided, or no author is found, returns the signatures of all configured authors.
+     *
+     * @param args the input from CLI execution arguments
+     * @return a list of [Author]
+     */
+    private fun fetchAuthors(args: Array<String>): List<Author> {
+        val maybeNamedTeam: NamedTeams? = config.namedTeams?.let { namedTeam -> namedTeam.filter { it.key == args[0] } }
+
+        maybeNamedTeam?.let { namedTeams: NamedTeams ->
+            return config[namedTeams]
+        }
+        return args
             .mapNotNull { tag -> config[tag] }
             .let {
                 val authors = it.ifEmpty { config.team }
-                formatter.generateSignatures(authors)
+                authors
             }
     }
 
