@@ -4,10 +4,15 @@ All contributions are welcome!
 
 Check the [documentation][docs] to have a better understanding of the code.
 
-If you'd like to submit a change, please create a Pull-Request. There are some
-[issues][1] in the repository on which you can base your contribution.
+If you'd like to submit a change, please follow these steps:
 
-Don't forget to add yourself as a contributor to the project README section!
+1. check the [issues][1]
+    - if there's something for you, in the discussion ask me to put you as assignee
+    - if there's no issue for you, feel free to create your own -- in this case, please create it with yourself as assignee directly :)
+2. create a Pull-Request and make sure to:
+    - put yourself in the CONTRIBUTORS section in the README
+    - close the related issue via [commands in commit message][2]
+    - add docs and tests when due
 
 
 ## Creating a PR
@@ -24,3 +29,4 @@ Don't forget to add yourself as a contributor to the project README section!
 
 [docs]: https://jooaodanieel.github.io/GCommit/
 [1]: https://github.com/jooaodanieel/GCommit/issues
+[2]: https://github.blog/2013-01-22-closing-issues-via-commit-messages/
