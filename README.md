@@ -78,6 +78,9 @@ So, for instance, a team member can be defined in `gcommit.conf.json` as follows
       "tag": "JAD"
     }
   ],
+  "namedTeams": {
+    "frontend": [ "AB", "CD" ]
+  }
   
   // ... other aspects ...
   
@@ -87,6 +90,8 @@ So, for instance, a team member can be defined in `gcommit.conf.json` as follows
 GCommit makes it easier to sign commits by providing a quick reference to a stored team member.
 The **tag** is the "quick reference".
 So make sure to inform unique tags ;)
+
+The **namedTeams** makes it possible to use pre-defined named teams that translate to a set of people
 
 2. the signature format
 
@@ -119,6 +124,13 @@ Then, after adding changes to git staging area, simply run
 ```bash
 git gcommit JOD JAD
 ```
+
+If you configured a named team you can run
+
+```bash
+git gcommit frontend
+```
+to have the same effect
 
 > in the case you want to sign with the entire team, you can simply run `git gcommit` with no arguments
 
