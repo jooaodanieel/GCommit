@@ -28,11 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-non-win]
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         name: download ubuntu
         with:
           name: gcommit-ubuntu-latest
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         name: download macos
         with:
           name: gcommit-macos-latest
